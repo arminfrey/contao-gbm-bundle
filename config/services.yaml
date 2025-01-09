@@ -2,12 +2,13 @@ services:
     _defaults:
         autowire: true
         autoconfigure: true
+        
     
     Arminfrey\ContaoGbmBundle\:
         resource: ../src
         exclude: ../src/{ContaoManager,DependencyInjection}
-
-    arminfrey.contaogbmbundle.sendmail:
-    class: Arminfrey\ContaGbmBundle\SendMail
-    arguments:
+        arguments:
         - '@doctrine.dbal.default_connection'
+
+    
+    
