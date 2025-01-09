@@ -5,8 +5,6 @@ use Contao\DataContainer;
 use Contao\DC_Table;
 use Contao\Image;
 
-
-
 $GLOBALS['TL_DCA']['tl_geburtstagsmail'] = [
 	// Config
 	'config' => [
