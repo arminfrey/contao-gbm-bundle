@@ -16,7 +16,7 @@ $GLOBALS['TL_DCA']['tl_geburtstagsmail'] = [
 		(
 			'keys' => array
 			(
-				'id' => 'primary',
+				'id' => 'primary'
 			)
 		)
 	],
