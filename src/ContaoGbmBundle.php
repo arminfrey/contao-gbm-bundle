@@ -2,7 +2,7 @@
 // src/ContaoGbmBundle.php
 namespace Arminfrey\ContaoGbmBundle;
 
-use App\DependencyInjection\ContaoGbmExtension;
+use Arminfrey\ContaoGbmBundle\DependencyInjection\ContaoGbmExtension;
 use Symfony\Component\DependencyInjection\Extension\ExtensionInterface;
 use Symfony\Component\HttpKernel\Bundle\AbstractBundle;
 
