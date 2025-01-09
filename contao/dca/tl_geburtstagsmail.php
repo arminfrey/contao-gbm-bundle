@@ -5,13 +5,12 @@ use Contao\DataContainer;
 use Contao\DC_Table;
 use Contao\Image;
 
-var_dump("dca");
+
 
 $GLOBALS['TL_DCA']['tl_geburtstagsmail'] = [
 	// Config
 	'config' => [
 		'dataContainer'           => DC_Table::class,
-		'ptable'                  => 'tl_geburtstagsmail',
 		'enableVersioning'        => true,
 		'sql' => array
 		(
