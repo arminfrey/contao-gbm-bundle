@@ -1,8 +1,8 @@
 <?php
 
 use Arminfrey\ContaoGbmBundle\ContaoGbmBundle;
-use Arminfrey\ContaoGbmlBundle\Model\ContaoGbmModel;
-
+use Arminfrey\ContaoGbmBundle\Model\ContaoGbmModel;
+use Arminfrey\ContaoGbmBundle\SendMail;
 
 /**
  * -------------------------------------------------------------------------
@@ -18,7 +18,7 @@ $GLOBALS['BE_MOD']['Geburtstagsmail']['Geburtstagsmail'] = [
 ];
 
 
-$GLOBALS['TL_MODELS']['tl_geburtstagsmail'] = ArminfreyGeburtstagsmailModel::class;
+$GLOBALS['TL_MODELS']['tl_geburtstagsmail'] = ContaoGbmModel::class;
 
 /**
  * -------------------------------------------------------------------------
