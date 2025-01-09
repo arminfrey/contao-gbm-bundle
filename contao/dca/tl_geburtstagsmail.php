@@ -7,7 +7,6 @@ use Contao\Image;
 
 $GLOBALS['TL_DCA']['tl_geburtstagsmail'] = [
 	// Config
-	var_dump("config");
 	'config' => [
 		'dataContainer'           => DC_Table::class,
 		'enableVersioning'        => true,
@@ -20,7 +19,6 @@ $GLOBALS['TL_DCA']['tl_geburtstagsmail'] = [
 		)
 	],
 	// List
-	var_dump("list");
 	'list' => [
 		'sorting' => [
 			'panelLayout'           => 'filter,limit',
@@ -72,7 +70,6 @@ $GLOBALS['TL_DCA']['tl_geburtstagsmail'] = [
 		]
 	],
   	// Palettes
-	var_dump("palettes");
 	'palettes' => [
 		'__selector__' => ['mailUseCustomText'],
 		'default'      => '{config_legend},memberGroup,priority;{email_legend},sender,senderName,mailCopy,mailBlindCopy,mailUseCustomText'
