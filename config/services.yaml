@@ -7,7 +7,7 @@ services:
         resource: ../src
         exclude: ../src/{ContaoManager,DependencyInjection}
 
-    contaogbmbundle.sendmail:
+    arminfrey.contaogbmbundle.sendmail:
     class: Arminfrey\ContaGbmBundle\SendMail
     arguments:
         - '@doctrine.dbal.default_connection'
