@@ -90,7 +90,7 @@ class SendMail
 			. "WHERE tl_member.disable = 0 "
 			. "AND DATE_FORMAT(CURRENT_DATE(), '%d.%c') = DATE_FORMAT(DATE_ADD(FROM_UNIXTIME(0), interval tl_member.dateOfBirth second), '%d.%c') "
 			. "ORDER BY tl_member.id, tl_geburtstagsmail.priority DESC");
-		var_dump($config);
+		
 		foreach ($config as $conf) 
 		{
 				if(($GLOBALS['TL_CONFIG']['birthdayMailerDeveloperMode'] && 
@@ -301,6 +301,8 @@ class SendMail
 	 */
 	public function deleteConfiguration(DataContainer $dc)
 	{
+		var_dump("delete");
+		var_dump(dc);
 		$this->connection->executeStatement('DELETE FROM tl_geburtstagsmail WHERE memberGroup = ?', [$dc->id]);
 	}
 	
