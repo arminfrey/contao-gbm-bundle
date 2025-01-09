@@ -1,5 +1,6 @@
 <?php
 
+var_dump("palette,tl_settings");
 /**
  * Add to palette
  */
@@ -7,6 +8,8 @@ $GLOBALS['TL_DCA']['tl_settings']['palettes']['__selector__'][] = 'birthdayMaile
 $GLOBALS['TL_DCA']['tl_settings']['palettes']['default'] .= ';{birthdayMailer_legend},birthdayMailerAllowDuplicates, birthdayMailerLogDebugInfo, birthdayMailerDeveloperMode;';
 $GLOBALS['TL_DCA']['tl_settings']['subpalettes']['birthdayMailerDeveloperMode'] = 'birthdayMailerDeveloperModeEmail, birthdayMailerDeveloperModeIgnoreDate';
 
+
+var_dump("add fields");
 /**
  * Add fields
  */
