@@ -1,7 +1,7 @@
 <?php
 
-use Arminfrey\ContaoGbmBundle\ArminfreyGeburtstagsmailBundle;
-use Arminfrey\GeburtstagsmailBundle\Model\ArminfreyGeburtstagsmailModel;
+use Arminfrey\ContaoGbmBundle\ContaoGbmBundle;
+use Arminfrey\ContaoGbmlBundle\Model\ContaoGbmModel;
 
 
 /**
@@ -14,7 +14,6 @@ use Arminfrey\GeburtstagsmailBundle\Model\ArminfreyGeburtstagsmailModel;
 $GLOBALS['BE_MOD']['Geburtstagsmail']['Geburtstagsmail'] = [
 	'tables'		=> ['tl_geburtstagsmail'],
 	'icon'             => \dirname(__DIR__) . '/../../assets/icon.png',
-	//'icon'			=> '/../../src/assets/icon.png',
 	'sendBirthdayMail'	=> [SendMailService::class, 'sendBirthdayMailManually'], 
 ];
 
