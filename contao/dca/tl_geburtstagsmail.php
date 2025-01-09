@@ -10,7 +10,13 @@ $GLOBALS['TL_DCA']['tl_geburtstagsmail'] = [
 	'config' => [
 		'dataContainer'           => DC_Table::class,
 		'enableVersioning'        => true,
-		'sql' => ['keys' => ['id' => 'primary']],
+		'sql' => array
+		(
+			'keys' => array
+			(
+				'id' => 'primary',
+			)
+		)
 	],
 	// List
 	'list' => [
