@@ -1,6 +1,5 @@
 <?php
 
-var_dump("palette,tl_settings");
 /**
  * Add to palette
  */
