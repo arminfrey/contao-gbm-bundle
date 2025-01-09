@@ -20,7 +20,7 @@ $GLOBALS['TL_DCA']['tl_geburtstagsmail'] = [
 		)
 	],
 	// List
-	var_dump("list")
+	var_dump("list");
 	'list' => [
 		'sorting' => [
 			'panelLayout'           => 'filter,limit',
