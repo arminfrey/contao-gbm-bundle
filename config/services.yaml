@@ -6,3 +6,7 @@ services:
     Arminfrey\ContaoGbmBundle\:
         resource: ../src
         exclude: ../src/{ContaoManager,DependencyInjection}
+
+    Arminfrey\ContaoGbmBundle\contao\classes\SendMail:
+        arguments:
+            $connection: '@doctrine.dbal.default_connection'
