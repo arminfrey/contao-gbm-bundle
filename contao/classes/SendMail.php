@@ -20,6 +20,7 @@ class SendMail
     public function __construct(Connection $connection)
     {
         $this->connection = $connection;
+	var_dump($this->connection);
     }
 
 
@@ -79,7 +80,7 @@ class SendMail
 		$alreadySendTo = array();
 		$notSendCauseOfError = array();
 		$notSendCauseOfAbortion = array();
-
+		var_dump("hier");
 		$config = $this->connection->fetchAllAssociative("SELECT tl_member.*, "
 			. "tl_member_group.name as memberGroupName, tl_member_group.disable as memberGroupDisable, tl_member_group.start as memberGroupStart, tl_member_group.stop as memberGroupStop, "
 			. "tl_geburtstagsmail.sender as mailSender, tl_geburtstagsmail.senderName as mailSenderName, tl_geburtstagsmail.mailCopy as mailCopy, tl_geburtstagsmail.mailBlindCopy as mailBlindCopy, "
