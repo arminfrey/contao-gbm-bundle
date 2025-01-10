@@ -6,7 +6,7 @@ use Contao\DC_Table;
 use Contao\Image;
 use Contao\Input;
 
-var_dump(&$GLOBALS['TL_LANG']['tl_geburtstagsmail']['memberGroup']);
+var_dump($GLOBALS['TL_LANG']['tl_geburtstagsmail']['memberGroup']);
 
 $GLOBALS['TL_DCA']['tl_geburtstagsmail'] = array(
 	// Config
