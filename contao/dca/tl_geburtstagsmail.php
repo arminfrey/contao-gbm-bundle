@@ -6,6 +6,9 @@ use Contao\DC_Table;
 use Contao\Image;
 use Contao\Input;
 
+error_reporting(-1);
+ini_set('display_errors', true);
+
 $GLOBALS['TL_DCA']['tl_geburtstagsmail'] = array(
 	// Config
 	'config' => array(
