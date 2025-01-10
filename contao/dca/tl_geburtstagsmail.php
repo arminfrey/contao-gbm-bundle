@@ -6,21 +6,11 @@ use Contao\DC_Table;
 use Contao\Image;
 use Contao\Input;
 
-var_dump($GLOBALS['TL_LANG']['tl_geburtstagsmail']['memberGroup']);
-var_dump($GLOBALS['TL_LANG']['tl_geburtstagsmail']['priority']);
-var_dump($GLOBALS['TL_LANG']['tl_geburtstagsmail']['sender']);
-var_dump($GLOBALS['TL_LANG']['tl_geburtstagsmail']['senderName']);
-var_dump($GLOBALS['TL_LANG']['tl_geburtstagsmail']['mailCopy']);
-var_dump($GLOBALS['TL_LANG']['tl_geburtstagsmail']['mailBlindCopy']);
-var_dump($GLOBALS['TL_LANG']['tl_geburtstagsmail']['mailUseCustomText']);
-var_dump($GLOBALS['TL_LANG']['tl_geburtstagsmail']['mailTextKey']);
-var_dump($GLOBALS['TL_LANG']['MSC']['all']);
-
 
 $GLOBALS['TL_DCA']['tl_geburtstagsmail'] = array(
 	// Config
 	'config' => array(
-		'dataContainer'			=> DC_Table::class,
+		'dataContainer'			=> Contao\DC_Table::class,
 		'enableVersioning'		=> true,
 		'sql' => array(
 			'keys' => array(
@@ -31,7 +21,7 @@ $GLOBALS['TL_DCA']['tl_geburtstagsmail'] = array(
 	// List
 	'list' => array(
 		'sorting' => array(
-			'mode'        => DataContainer::MODE_SORTABLE,
+			'mode'        => Contao\DataContainer::MODE_SORTABLE,
             		'fields'      => array('id'),
             		'panelLayout' => 'filter;sort,search,limit'
 		)
@@ -72,9 +62,9 @@ $GLOBALS['TL_DCA']['tl_geburtstagsmail'] = array(
 			'attributes'          => 'onclick="if (!confirm(\'' . $GLOBALS['TL_LANG']['MSC']['deleteConfirm'] . '\')) return false; Backend.getScrollOffset()"'
 		),
 		'show' => array(
-			'label'				=> &$GLOBALS['TL_LANG']['tl_geburtstagsmail']['show'],
-			'href'				=> 'act=show',
-			'icon'				=> 'show.svg',
+			'label'			=> &$GLOBALS['TL_LANG']['tl_geburtstagsmail']['show'],
+			'href'			=> 'act=show',
+			'icon'			=> 'show.svg',
 			'attributes'		=> 'style="margin-right:3px"'
 		)
 	),
