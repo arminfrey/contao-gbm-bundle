@@ -9,7 +9,7 @@ use Contao\Input;
 $GLOBALS['TL_DCA']['tl_geburtstagsmail'] = array(
 	// Config
 	'config' => array(
-		'dataContainer'			=> Contao\DC_Table::class,
+		'dataContainer'			=> DC_Table::class,
 		'enableVersioning'		=> true,
 		'sql' => array(
 			'keys' => array(
@@ -20,13 +20,13 @@ $GLOBALS['TL_DCA']['tl_geburtstagsmail'] = array(
 	// List
 	'list' => array(
 		'sorting' => array(
-			'mode'        => Contao\DataContainer::MODE_SORTABLE,
+			'mode'        => DataContainer::MODE_SORTABLE,
             		'fields'      => array('id'),
             		'panelLayout' => 'filter;sort,search,limit'
 		)
 	),	
 	'label' => array(
-		'fields'		=> array('MemberGroup:tl_member_group.name', 'priority'),
+		'fields'		=> array('memberGroup:tl_member_group.name', 'priority'),
 		'label_callback'	=> array('tl_geburtstagsmail', 'addIcon'),
 		'showColumns'		=> true 
 	),	
@@ -90,7 +90,7 @@ $GLOBALS['TL_DCA']['tl_geburtstagsmail'] = array(
 		'filter'		=> true,
 		'eval'			=> array('mandatory'=>true, 'unique'=>true, 'includeBlankOption'=>true, 'tl_class'=>'w50'),
 		'sql'			=> "int(10) unsigned NOT NULL default '0'",
-		'relation'   		=> ['type' => 'belongsTo', 'load' => 'lazy']
+		//'relation'   		=> ['type' => 'belongsTo', 'load' => 'lazy']
 	),
 	'priority' => array(
 		'label'			=> &$GLOBALS['TL_LANG']['tl_geburtstagsmail']['priority'],
