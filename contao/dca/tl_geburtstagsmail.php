@@ -6,9 +6,16 @@ use Contao\DC_Table;
 use Contao\Image;
 use Contao\Input;
 
-System::loadLanguageFile('tl_geburtstagsmail');
-
 var_dump($GLOBALS['TL_LANG']['tl_geburtstagsmail']['memberGroup']);
+var_dump($GLOBALS['TL_LANG']['tl_geburtstagsmail']['priority']);
+var_dump($GLOBALS['TL_LANG']['tl_geburtstagsmail']['sender']);
+var_dump($GLOBALS['TL_LANG']['tl_geburtstagsmail']['senderName']);
+var_dump($GLOBALS['TL_LANG']['tl_geburtstagsmail']['mailCopy']);
+var_dump($GLOBALS['TL_LANG']['tl_geburtstagsmail']['mailBlindCopy']);
+var_dump($GLOBALS['TL_LANG']['tl_geburtstagsmail']['mailUseCustomText']);
+var_dump($GLOBALS['TL_LANG']['tl_geburtstagsmail']['mailTextKey']);
+var_dump($GLOBALS['TL_LANG']['MSC']['all']);
+
 
 $GLOBALS['TL_DCA']['tl_geburtstagsmail'] = array(
 	// Config
@@ -94,7 +101,7 @@ $GLOBALS['TL_DCA']['tl_geburtstagsmail'] = array(
 		'filter'		=> true,
 		'eval'			=> array('mandatory'=>true, 'unique'=>true, 'includeBlankOption'=>true, 'tl_class'=>'w50'),
 		'sql'			=> "int(10) unsigned NOT NULL default '0'",
-		'relation'   => ['type' => 'belongsTo', 'load' => 'lazy']
+		'relation'   		=> ['type' => 'belongsTo', 'load' => 'lazy']
 	),
 	'priority' => array(
 		'label'			=> &$GLOBALS['TL_LANG']['tl_geburtstagsmail']['priority'],
