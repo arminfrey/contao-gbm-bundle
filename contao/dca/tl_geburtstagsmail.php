@@ -21,12 +21,12 @@ $GLOBALS['TL_DCA']['tl_geburtstagsmail'] = array(
 	'list' => array(
 		'sorting' => array(
 			'mode'        => DataContainer::MODE_SORTABLE,
-            'fields'      => array('id'),
-            'panelLayout' => 'filter;sort,search,limit'
-			)
+            		'fields'      => array('id'),
+            		'panelLayout' => 'filter;sort,search,limit'
+		)
 	),	
 	'label' => array(
-		'fields'			=> array('MemberGroup:tl_member_group.name', 'priority'),
+		'fields'		=> array('MemberGroup:tl_member_group.name', 'priority'),
 		'label_callback'	=> array('tl_geburtstagsmail', 'addIcon'),
 		'showColumns'		=> true 
 	),	
@@ -82,65 +82,66 @@ $GLOBALS['TL_DCA']['tl_geburtstagsmail'] = array(
         'tstamp'         => array(
             'sql' => "int(10) unsigned NOT NULL default '0'"
         ),
-		'memberGroup' => array(
-			'label'			=> &$GLOBALS['TL_LANG']['tl_geburtstagsmail']['memberGroup'],
-			'exclude'		=> true,
-			'inputType'		=> 'select',
-			'foreignKey'	=> 'tl_member_group.name',
-			'filter'		=> true,
-			'eval'			=> array('mandatory'=>true, 'unique'=>true, 'includeBlankOption'=>true, 'tl_class'=>'w50'),
-			'sql'			=> "int(10) unsigned NOT NULL default '0'"
-		),
-		'priority' => array(
-			'label'			=> &$GLOBALS['TL_LANG']['tl_geburtstagsmail']['priority'],
-			'exclude'		=> true,
-			'inputType'		=> 'text',
-			'eval'			=> array('rgxp' => 'digit','maxlength'=>10, 'tl_class'=>'w50'),
-			'sql'			=> "int(10) unsigned NOT NULL default '0'"
-		),
-		'sender' => array(
-			'label'			=> &$GLOBALS['TL_LANG']['tl_geburtstagsmail']['sender'],
-			'exclude'		=> true,
-			'inputType'		=> 'text',
-			'eval'			=> array('mandatory'=>true, 'rgxp' => 'email','maxlength'=>128, 'tl_class'=>'w50'),
-			'sql'			=> "varchar(128) NOT NULL default ''"
-		),
-		'senderName' => array(
-			'label'		=> &$GLOBALS['TL_LANG']['tl_geburtstagsmail']['senderName'],
-			'exclude'	=> true,
-			'inputType'	=> 'text',
-			'eval'		=> array('rgxp' => 'extnd','maxlength'=>128, 'tl_class'=>'w50'),
-			'sql'		=> "varchar(128) NOT NULL default ''"
-		),
-		'mailCopy' => array(
-			'label'		=> &$GLOBALS['TL_LANG']['tl_geburtstagsmail']['mailCopy'],
-			'exclude'	=> true,
-			'inputType'	=> 'text',
-			'eval'		=> array('rgxp' => 'emails','maxlength'=>255, 'tl_class'=>'w50'),
-			'sql'		=> "varchar(255) NOT NULL default ''"
-		),
-		'mailBlindCopy' => array(
-			'label'		=> &$GLOBALS['TL_LANG']['tl_geburtstagsmail']['mailBlindCopy'],
-			'exclude'	=> true,
-			'inputType'	=> 'text',
-			'eval'		=> array('rgxp' => 'emails','maxlength'=>255, 'tl_class'=>'w50'),
-			'sql'		=> "varchar(255) NOT NULL default ''"
-		),
-		'mailUseCustomText' => array(
-			'label'		=> &$GLOBALS['TL_LANG']['tl_geburtstagsmail']['mailUseCustomText'],
-			'exclude'	=> true,
-			'inputType'	=> 'checkbox',
-			'eval'		=> array('tl_class'=>'w50', 'submitOnChange'=>true),
-			'sql'		=> "char(1) NOT NULL default ''"
-		),
-		'mailTextKey' => array(
-			'label'		=> &$GLOBALS['TL_LANG']['tl_geburtstagsmail']['mailTextKey'],
-			'exclude'	=> true,
-			'inputType'	=> 'text',
-			'eval'		=> array('mandatory'=>true, 'maxlength'=>20, 'spaceToUnderscore'=>true, 'tl_class'=>'w50'),
-			'sql'		=> "varchar(20) NOT NULL default ''"
-		)
+	'memberGroup' => array(
+		'label'			=> &$GLOBALS['TL_LANG']['tl_geburtstagsmail']['memberGroup'],
+		'exclude'		=> true,
+		'inputType'		=> 'select',
+		'foreignKey'		=> 'tl_member_group.name',
+		'filter'		=> true,
+		'eval'			=> array('mandatory'=>true, 'unique'=>true, 'includeBlankOption'=>true, 'tl_class'=>'w50'),
+		'sql'			=> "int(10) unsigned NOT NULL default '0'",
+		'relation'   => ['type' => 'belongsTo', 'load' => 'lazy']
+	),
+	'priority' => array(
+		'label'			=> &$GLOBALS['TL_LANG']['tl_geburtstagsmail']['priority'],
+		'exclude'		=> true,
+		'inputType'		=> 'text',
+		'eval'			=> array('rgxp' => 'digit','maxlength'=>10, 'tl_class'=>'w50'),
+		'sql'			=> "int(10) unsigned NOT NULL default '0'"
+	),
+	'sender' => array(
+		'label'			=> &$GLOBALS['TL_LANG']['tl_geburtstagsmail']['sender'],
+		'exclude'		=> true,
+		'inputType'		=> 'text',
+		'eval'			=> array('mandatory'=>true, 'rgxp' => 'email','maxlength'=>128, 'tl_class'=>'w50'),
+		'sql'			=> "varchar(128) NOT NULL default ''"
+	),
+	'senderName' => array(
+		'label'		=> &$GLOBALS['TL_LANG']['tl_geburtstagsmail']['senderName'],
+		'exclude'	=> true,
+		'inputType'	=> 'text',
+		'eval'		=> array('rgxp' => 'extnd','maxlength'=>128, 'tl_class'=>'w50'),
+		'sql'		=> "varchar(128) NOT NULL default ''"
+	),
+	'mailCopy' => array(
+		'label'		=> &$GLOBALS['TL_LANG']['tl_geburtstagsmail']['mailCopy'],
+		'exclude'	=> true,
+		'inputType'	=> 'text',
+		'eval'		=> array('rgxp' => 'emails','maxlength'=>255, 'tl_class'=>'w50'),
+		'sql'		=> "varchar(255) NOT NULL default ''"
+	),
+	'mailBlindCopy' => array(
+		'label'		=> &$GLOBALS['TL_LANG']['tl_geburtstagsmail']['mailBlindCopy'],
+		'exclude'	=> true,
+		'inputType'	=> 'text',
+		'eval'		=> array('rgxp' => 'emails','maxlength'=>255, 'tl_class'=>'w50'),
+		'sql'		=> "varchar(255) NOT NULL default ''"
+	),
+	'mailUseCustomText' => array(
+		'label'		=> &$GLOBALS['TL_LANG']['tl_geburtstagsmail']['mailUseCustomText'],
+		'exclude'	=> true,
+		'inputType'	=> 'checkbox',
+		'eval'		=> array('tl_class'=>'w50', 'submitOnChange'=>true),
+		'sql'		=> "char(1) NOT NULL default ''"
+	),
+	'mailTextKey' => array(
+		'label'		=> &$GLOBALS['TL_LANG']['tl_geburtstagsmail']['mailTextKey'],
+		'exclude'	=> true,
+		'inputType'	=> 'text',
+		'eval'		=> array('mandatory'=>true, 'maxlength'=>20, 'spaceToUnderscore'=>true, 'tl_class'=>'w50'),
+		'sql'		=> "varchar(20) NOT NULL default ''"
 	)
+    )
 );
 
 
