@@ -13,7 +13,7 @@ use Arminfrey\ContaoGbmBundle\SendMail;
 // Add configuration to Backend
 $GLOBALS['BE_MOD']['Geburtstagsmail']['Geburtstagsmail'] = [
 	'tables'		=> ['tl_geburtstagsmail'],
-	'icon'             => \dirname(__DIR__) . '/../../assets/icon.png',
+	'icon'             => \dirname(__DIR__) . '/../../../assets/icon.png',
 	'sendBirthdayMail'	=> [SendMail::class, 'sendBirthdayMailManually'], 
 ];
 
