@@ -6,6 +6,8 @@ use Contao\DC_Table;
 use Contao\Image;
 use Contao\Input;
 
+System::loadLanguageFile('tl_geburtstagsmail');
+
 var_dump($GLOBALS['TL_LANG']['tl_geburtstagsmail']['memberGroup']);
 
 $GLOBALS['TL_DCA']['tl_geburtstagsmail'] = array(
