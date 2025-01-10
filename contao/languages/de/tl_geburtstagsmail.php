@@ -10,7 +10,7 @@ $GLOBALS['TL_LANG']['tl_geburtstagsmail']['senderName']        = array('Absender
 $GLOBALS['TL_LANG']['tl_geburtstagsmail']['mailCopy']          = array('Kopie an (CC)', 'Bitte geben Sie eine Liste kommagetrennter E-Mail-Adressen an, die eine Kopie der Geburtstagsemail erhalten sollen.');
 $GLOBALS['TL_LANG']['tl_geburtstagsmail']['mailBlindCopy']     = array('Blindkopie an (BCC)', 'Bitte geben Sie eine Liste kommagetrennter E-Mail-Adressen an, die eine Blindkopie der Geburtstagsemail erhalten sollen.');
 $GLOBALS['TL_LANG']['tl_geburtstagsmail']['mailUseCustomText'] = array('Eigene E-Mail Texte verwenden', 'Bitte geben Sie ob statt der Standardinhalte (<i>Anrede, Betreff, HTML, Text</i>) in der E-Mail eigene Texte verwendet werden sollen.');
-$GLOBALS['TL_LANG']['tl_geburtstagsmail']['mailTextKey']       = array('Schlüssel für eigene E-Mail Texte', 'Bitte geben Sie den Schlüssel für die eigenen E-Mail Texte. Dieser wird benötigt um die eigenen Texte zu ermitteln.<br/><br/>Beispiel (Eintrag in <i>system/config/langconfig.php</i>):<br/><code>$GLOBALS[\'TL_LANG\'][\'BirthdayMailer\'][\'mail\'][\'<b>MEIN_SCHLUESSEL</b>\'][\'subject\'][\'en\'] = \'English Custom Subject\'; </code>');
+$GLOBALS['TL_LANG']['tl_geburtstagsmail']['mailTextKey']       = array('Schlüssel für eigene E-Mail Texte', 'Bitte geben Sie den Schlüssel für die eigenen E-Mail Texte. Dieser wird benötigt um die eigenen Texte zu ermitteln.');
 
 /**
  * Legends
