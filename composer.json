@@ -15,4 +15,5 @@
     },
      "conflict": {
         "contao/core-bundle": "5.3.21"
+     }
 }
