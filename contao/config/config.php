@@ -2,7 +2,7 @@
 
 use Arminfrey\ContaoGbmBundle\ContaoGbmBundle;
 use Arminfrey\ContaoGbmBundle\Model\ContaoGbmModel;
-//use Arminfrey\ContaoGbmBundle\SendMail;
+//use Arminfrey\ContaoGbmBundle\contao\classes\SendMail;
 
 /**
  * -------------------------------------------------------------------------
@@ -13,8 +13,8 @@ use Arminfrey\ContaoGbmBundle\Model\ContaoGbmModel;
 // Add configuration to Backend
 $GLOBALS['BE_MOD']['Geburtstagsmail']['Geburtstagsmail'] = [
 	'tables'		=> ['tl_geburtstagsmail'],
-	'icon'             => \dirname(__DIR__) . '/../../assets/icon.png',
-	'sendBirthdayMail'	=> [SendMail::class, 'sendBirthdayMailManually'], 
+	'icon'             => \dirname(__DIR__) . '/../assets/icon.png',
+	'sendBirthdayMail'	=> [\dirname(__DIR__) . /../contao/classes/SendMail::class, 'sendBirthdayMailManually']
 ];
 
 
