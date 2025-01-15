@@ -1,9 +1,9 @@
 <?php
-namespace Arminfrey\ContaoGbmBundle\contao;
+//namespace Arminfrey\ContaoGbmBundle\contao;
 
 use Arminfrey\ContaoGbmBundle\ContaoGbmBundle;
 use Arminfrey\ContaoGbmBundle\Model\ContaoGbmModel;
-use Arminfrey\ContaoGbmBundle\contao\classes\SendMail;
+use Arminfrey\ContaoGbmBundle\Services\SendMail;
 
 /**
  * -------------------------------------------------------------------------
