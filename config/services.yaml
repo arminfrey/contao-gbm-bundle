@@ -11,6 +11,5 @@ services:
         - '@doctrine.dbal.default_connection'
 
     Arminfrey\ContaoGbmBundle\Services\SendMail\:
-        resource: ../contao
         arguments:
         - '@doctrine.dbal.default_connection'
