@@ -14,7 +14,7 @@ use Arminfrey\ContaoGbmBundle\Model\ContaoGbmModel;
 $GLOBALS['BE_MOD']['Geburtstagsmail']['Geburtstagsmail'] = [
 	'tables'		=> ['tl_geburtstagsmail'],
 	'icon'             => \dirname(__DIR__) . '/../assets/icon.png',
-	'sendBirthdayMail'	=> [\dirname(__DIR__) . /../contao/classes/SendMail::class, 'sendBirthdayMailManually']
+	'sendBirthdayMail'	=> [\dirname(__DIR__) . '/../contao/classes/' . SendMail::class, 'sendBirthdayMailManually']
 ];
 
 
