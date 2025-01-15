@@ -23,48 +23,48 @@ $GLOBALS['TL_DCA']['tl_geburtstagsmail'] = array(
 			'mode'        => DataContainer::MODE_SORTABLE,
             		'fields'      => array('id'),
             		'panelLayout' => 'filter;sort,search,limit'
-		)
-	),	
-	'label' => array(
-		'fields'		=> array('memberGroup:tl_member_group.name', 'priority'),
-		'label_callback'	=> array('tl_geburtstagsmail', 'addIcon'),
-		'showColumns'		=> true 
-	),	
-	'global_operations' => array(
-		'sendBirthdayMail' => array(
-			'label'               => &$GLOBALS['TL_LANG']['tl_geburtstagsmail']['sendBirthdayMail'],
-			'href'                => 'key=sendBirthdayMail',
-			'attributes'          => 'onclick="Backend.getScrollOffset();" style="background: url(src//assets/sendBirthdayMail.png) no-repeat scroll left center transparent; margin-left: 15px; padding: 2px 0 3px 20px;"'
-		),
-		'all' => array(
-			'label'               => &$GLOBALS['TL_LANG']['MSC']['all'],
-			'href'                => 'act=select',
-			'class'               => 'header_edit_all',
-			'attributes'          => 'onclick="Backend.getScrollOffset();"'
-		)
-	),	
-	'operations' => array(
-		'edit' => array(
-			'label'               => &$GLOBALS['TL_LANG']['tl_geburtstagsmail']['edit'],
-			'href'                => 'act=edit',
-			'icon'                => 'edit.svg'
-		),
-		'copy' => array(
-			'label'               => &$GLOBALS['TL_LANG']['tl_geburtstagsmail']['copy'],
-			'href'                => 'act=copy',
-			'icon'                => 'copy.svg'
-		),
-		'delete' => array(
-			'label'               => &$GLOBALS['TL_LANG']['tl_geburtstagsmail']['delete'],
-			'href'                => 'act=delete',
-			'icon'                => 'delete.svg',
-			'attributes'          => 'onclick="if (!confirm(\'' . $GLOBALS['TL_LANG']['MSC']['deleteConfirm'] . '\')) return false; Backend.getScrollOffset()"'
-		),
-		'show' => array(
-			'label'			=> &$GLOBALS['TL_LANG']['tl_geburtstagsmail']['show'],
-			'href'			=> 'act=show',
-			'icon'			=> 'show.svg',
-			'attributes'		=> 'style="margin-right:3px"'
+		),	
+		'label' => array(
+			'fields'		=> array('memberGroup:tl_member_group.name', 'priority'),
+			'label_callback'	=> array('tl_geburtstagsmail', 'addIcon'),
+			'showColumns'		=> true 
+		),	
+		'global_operations' => array(
+			'sendBirthdayMail' => array(
+				'label'               => &$GLOBALS['TL_LANG']['tl_geburtstagsmail']['sendBirthdayMail'],
+				'href'                => 'key=sendBirthdayMail',
+				'attributes'          => 'onclick="Backend.getScrollOffset();" style="background: url(src//assets/sendBirthdayMail.png) no-repeat scroll left center transparent; margin-left: 15px; padding: 2px 0 3px 20px;"'
+			),
+			'all' => array(
+				'label'               => &$GLOBALS['TL_LANG']['MSC']['all'],
+				'href'                => 'act=select',
+				'class'               => 'header_edit_all',
+				'attributes'          => 'onclick="Backend.getScrollOffset();"'
+			)
+		),	
+		'operations' => array(
+			'edit' => array(
+				'label'               => &$GLOBALS['TL_LANG']['tl_geburtstagsmail']['edit'],
+				'href'                => 'act=edit',
+				'icon'                => 'edit.svg'
+			),
+			'copy' => array(
+				'label'               => &$GLOBALS['TL_LANG']['tl_geburtstagsmail']['copy'],
+				'href'                => 'act=copy',
+				'icon'                => 'copy.svg'
+			),
+			'delete' => array(
+				'label'               => &$GLOBALS['TL_LANG']['tl_geburtstagsmail']['delete'],
+				'href'                => 'act=delete',
+				'icon'                => 'delete.svg',
+				'attributes'          => 'onclick="if (!confirm(\'' . $GLOBALS['TL_LANG']['MSC']['deleteConfirm'] . '\')) return false; Backend.getScrollOffset()"'
+			),
+			'show' => array(
+				'label'			=> &$GLOBALS['TL_LANG']['tl_geburtstagsmail']['show'],
+				'href'			=> 'act=show',
+				'icon'			=> 'show.svg',
+				'attributes'		=> 'style="margin-right:3px"'
+			)
 		)
 	),
   	// Palettes
