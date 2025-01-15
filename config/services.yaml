@@ -12,5 +12,6 @@ services:
 
     Arminfrey\ContaoGbmBundle\Services\:
         resource: ../src
+        exclude: ../src/Services
         arguments:
         - '@doctrine.dbal.default_connection'
