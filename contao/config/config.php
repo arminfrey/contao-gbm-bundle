@@ -1,4 +1,5 @@
 <?php
+namespace Arminfrey\ContaoGbmBundle\contao;
 
 use Arminfrey\ContaoGbmBundle\ContaoGbmBundle;
 use Arminfrey\ContaoGbmBundle\Model\ContaoGbmModel;
@@ -14,7 +15,7 @@ use Arminfrey\ContaoGbmBundle\contao\classes\SendMail;
 $GLOBALS['BE_MOD']['Geburtstagsmail']['Geburtstagsmail'] = [
 	'tables'		=> ['tl_geburtstagsmail'],
 	'icon'             	=> '/../assets/icon.png',
-	'sendBirthdayMail'	=> [SendMail::class, 'sendBirthdayMailManually']
+	'sendBirthdayMail'	=> ['contao/classes/' . SendMail::class, 'sendBirthdayMailManually']
 ];
 
 
