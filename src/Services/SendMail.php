@@ -1,6 +1,6 @@
 <?php
 
-namespace Arminfrey\ContaoGbmBundle\contao\classes;
+namespace Arminfrey\ContaoGbmBundle\Services;
 
 use Contao\Backend;
 use Contao\BackendTemplate; 
