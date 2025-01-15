@@ -10,6 +10,8 @@
             "Arminfrey\\ContaoGbmBundle\\": "src/"
         }
     },
+    "conflict": {
+        "contao/core-bundle": "5.3.21"
     "extra": {
          "contao-manager-plugin": "Arminfrey\\ContaoGbmBundle\\ContaoManager\\Plugin"
     }
