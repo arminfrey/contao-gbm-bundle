@@ -6,9 +6,11 @@ services:
     
     Arminfrey\ContaoGbmBundle\:
         resource: ../src
-        exclude: ../src/{ContaoManager,DependencyInjection,contao}
+        exclude: ../src/{ContaoManager,DependencyInjection}
         arguments:
         - '@doctrine.dbal.default_connection'
 
-    
-    
+    Arminfrey\ContaoGbmBundle\Services\:
+        resource: ../src
+        arguments:
+        - '@doctrine.dbal.default_connection'
