@@ -3,6 +3,9 @@ services:
         autowire: true
         autoconfigure: true
         public: true
+
+    request_stack:
+        public: true
         
     Arminfrey\ContaoGbmBundle\:
         resource: ../src
