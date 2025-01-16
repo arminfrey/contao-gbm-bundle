@@ -3,12 +3,6 @@ services:
         autowire: true
         autoconfigure: true
         public: true
-    monolog.logger.contao:
-        class: Monolog\Logger
-        decorates: container.logger
-        decoration_priority: 100
-    logger:
-        alias: $monolog.logger.contao
         
     Arminfrey\ContaoGbmBundle\:
         resource: ../src
@@ -21,4 +15,5 @@ services:
         arguments:
         - '@doctrine.dbal.default_connection'
         - request_stack
+        logger: '@logger'
         public: true
