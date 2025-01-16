@@ -36,7 +36,7 @@ class SendMail
 			
 			// Create template object
 			$objTemplate = new BackendTemplate('be_geburtstagsmail');
-			$cleanedUrl = str_replace('&key=sendBirthdayMail', '', $this->Environment->request);
+			$cleanedUrl = str_replace('&key=sendBirthdayMail', '', \Environment::get('uri'););
 			$cleanedUrl = str_replace('&', '&amp;', $cleanedUrl);
 			$escapedTitle = StringUtil::specialchars($GLOBALS['TL_LANG']['MSC']['backBT']);
 			$objTemplate->backLink = '<a href="' . $cleanedUrl . '" class="header_back" title="' . $escapedTitle . '" accesskey="b">' . $escapedTitle . '</a>';
