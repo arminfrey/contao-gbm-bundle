@@ -129,7 +129,7 @@ class SendMail
 			}
 		}
 
-		$logger->info('BirthdayMailer: Daily sending of birthday mail finished. Send ' . sizeof($alreadySendTo) . ' emails. '
+		$this->logger->info('BirthdayMailer: Daily sending of birthday mail finished. Send ' . sizeof($alreadySendTo) . ' emails. '
 							. sizeof($notSendCauseOfError) . ' emails could not be send due to errors. '
 							. sizeof($notSendCauseOfAbortion) . ' emails were aborted due to custom hooks. See birthdaymails.log for details.', array('contao' => new ContaoContext(__FUNCTION__, ContaoContext::GENERAL)));
 		
@@ -194,7 +194,7 @@ class SendMail
 		if ($GLOBALS['TL_CONFIG']['birthdayMailerDeveloperMode'] || $GLOBALS['TL_CONFIG']['birthdayMailerLogDebugInfo'])
 		{
 			$mailTextUsageOutput = $config->mailUseCustomText ? 'yes' : 'no';
-			$logger->info('Geburtstagsmailer: These are additional debugging information that will only be logged in developer mode or if debugging is enabled.'
+			$this->logger->info('Geburtstagsmailer: These are additional debugging information that will only be logged in developer mode or if debugging is enabled.'
 									 . ' | Userlanguage = ' . $config->language
 								   . ' | used language = ' . $language
 								   . ' | mailTextUsage = ' . $mailTextUsageOutput
