@@ -19,11 +19,13 @@ class SendMail
 	private Connection $connection;
 	const DEFAULT_LANGUAGE = 'de';
 	private $logger;
+	private $request;
 
-    public function __construct(Connection $connection,LoggerInterface $logger)
+    public function __construct(Connection $connection,LoggerInterface $logger,Request $request)
     {
         $this->connection = $connection;
 	$this->logger     = $logger;
+	$this->request	= $request;
     }
 
 
@@ -36,11 +38,9 @@ class SendMail
 			
 			// Create template object
 			$objTemplate = new BackendTemplate('be_geburtstagsmail');
-			$cleanedUrl = str_replace('&key=sendBirthdayMail', '', System::getContainer()->get('request_stack')->getCurrentRequest());
-			var_dump($cleanedUrl);
-			var_dump(System::getContainer()->get('request_stack')->getCurrentRequest());
+			//$cleanedUrl = str_replace('&key=sendBirthdayMail', '', $this->request);
+			//var_dump(System::getContainer()->get('request_stack')->getCurrentRequest());
 			$cleanedUrl = str_replace('&', '&amp;', $cleanedUrl);
-			var_dump($cleanedUrl);
 			$escapedTitle = StringUtil::specialchars($GLOBALS['TL_LANG']['MSC']['backBT']);
 			$objTemplate->backLink = '<a href="' . $cleanedUrl . '" class="header_back" title="' . $escapedTitle . '" accesskey="b">' . $escapedTitle . '</a>';
 			//$objTemplate->backLink = '<a href="'.\ampersand(str_replace('&key=sendBirthdayMail', '', $this->Environment->request)).'" class="header_back" title="'.specialchars($GLOBALS['TL_LANG']['MSC']['backBT']).'" accesskey="b">'.$GLOBALS['TL_LANG']['MSC']['backBT'].'</a>';
