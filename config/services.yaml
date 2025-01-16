@@ -10,7 +10,8 @@ services:
         arguments:
         - '@doctrine.dbal.default_connection'
 
-    Arminfrey\ContaoGbmBundle\SendMail\SendMail\:
+    Arminfrey\ContaoGbmBundle\SendMail\SendMail:
+        class: Arminfrey\ContaoGbmBundle\SendMail\SendMail
         arguments:
         - '@doctrine.dbal.default_connection'
         public: true
