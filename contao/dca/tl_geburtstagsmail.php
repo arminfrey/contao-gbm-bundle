@@ -5,6 +5,7 @@ use Contao\DataContainer;
 use Contao\DC_Table;
 use Contao\Image;
 use Contao\Input;
+use Contao\CoreBundle\Monolog\ContaoContext;
 
 $GLOBALS['TL_DCA']['tl_geburtstagsmail'] = array(
 	// Config
@@ -150,7 +151,7 @@ class tl_geburtstagsmail extends Backend
 	public function addIcon($row, $label)
 	{
 		if (empty($row)) {
-    			\Contao\Log::add('Row data is empty for icon generation.', 'ContaoGbmBundle addIcon()', TL_ERROR);
+    			$logger->info('Row data is empty for icon generation.', array('contao' => new ContaoContext(__METHOD__, ContaoContext::GENERAL)));
 		}
     		// Check that row has necessary keys
     		if (!isset($row['memberGroup'], $row['start'], $row['stop'], $row['disable'])) {
