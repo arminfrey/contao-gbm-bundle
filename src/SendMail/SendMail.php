@@ -19,11 +19,13 @@ class SendMail
 	private Connection $connection;
 	const DEFAULT_LANGUAGE = 'de';
 	private $logger;
+	private Request $request;
 
-    public function __construct(Connection $connection,LoggerInterface $logger)
+    public function __construct(Connection $connection,LoggerInterface $logger, Request $request)
     {
         $this->connection = $connection;
 	$this->logger     = $logger;
+	$this->request    = $request;
     }
 
 
@@ -36,7 +38,7 @@ class SendMail
 			
 			// Create template object
 			$objTemplate = new BackendTemplate('be_geburtstagsmail');
-			$cleanedUrl = str_replace('&key=sendBirthdayMail', '', \Environment::get('uri'));
+			$cleanedUrl = str_replace('&key=sendBirthdayMail', '', $request = $container->get('request_stack')->getCurrentRequest()->getRequestUri());
 			$cleanedUrl = str_replace('&', '&amp;', $cleanedUrl);
 			$escapedTitle = StringUtil::specialchars($GLOBALS['TL_LANG']['MSC']['backBT']);
 			$objTemplate->backLink = '<a href="' . $cleanedUrl . '" class="header_back" title="' . $escapedTitle . '" accesskey="b">' . $escapedTitle . '</a>';
