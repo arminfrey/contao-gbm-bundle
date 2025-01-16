@@ -41,6 +41,7 @@ class SendMail
 			$cleanedUrl = str_replace($this->request->query->get('key'), '', $this->request->getUri());
 			$cleanedUrl = str_replace($this->request->query->get('rt'), '', $cleanedUrl);
 			$cleanedUrl = str_replace($this->request->query->get('ref'), '', $cleanedUrl);
+			var_dump($cleanedUrl);
 			$escapedTitle = StringUtil::specialchars($GLOBALS['TL_LANG']['MSC']['backBT']);
 			$objTemplate->backLink = '<a href="' . $cleanedUrl . '" class="header_back" title="' . $escapedTitle . '" accesskey="b">' . $escapedTitle . '</a>';
 			//$objTemplate->backLink = '<a href="'.\ampersand(str_replace('&key=sendBirthdayMail', '', $this->Environment->request)).'" class="header_back" title="'.specialchars($GLOBALS['TL_LANG']['MSC']['backBT']).'" accesskey="b">'.$GLOBALS['TL_LANG']['MSC']['backBT'].'</a>';
