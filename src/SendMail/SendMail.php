@@ -1,6 +1,6 @@
 <?php
 
-namespace Arminfrey\ContaoGbmBundle\Services;
+namespace Arminfrey\ContaoGbmBundle\SendMail;
 
 use Contao\Backend;
 use Contao\BackendTemplate; 
