@@ -14,6 +14,6 @@ services:
         class: Arminfrey\ContaoGbmBundle\SendMail\SendMail
         arguments:
         - '@doctrine.dbal.default_connection'
-        - request_stack
-        logger: '@logger'
+        - '@request_stack'
+        - '@logger'
         public: true
