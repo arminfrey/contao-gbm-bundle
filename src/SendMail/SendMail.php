@@ -19,10 +19,8 @@ class SendMail
 {
 	private Connection $connection;
 	const DEFAULT_LANGUAGE = 'de';
-	private $logger;
-	private $request;
-
-    public function __construct(Connection $connection,LoggerInterface $logger,RequestStack $requestStack)
+	
+    public function __construct(Connection $connection, LoggerInterface $logger, RequestStack $requestStack)
     {
         $this->connection = $connection;
 	$this->logger     = $logger;
