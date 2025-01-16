@@ -8,6 +8,7 @@ use Contao\System;
 use Contao\StringUtil;
 use Contao\Controller;
 use Contao\CoreBundle\Monolog\ContaoContext;
+use Psr\Log\LoggerInterface;
 use Doctrine\DBAL\Connection;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpFoundation\Request;
@@ -15,12 +16,14 @@ use Symfony\Component\HttpFoundation\Response;
 
 class SendMail
 {
-    private Connection $connection;
+	private Connection $connection;
 	const DEFAULT_LANGUAGE = 'de';
+	private $logger;
 
-    public function __construct(Connection $connection)
+    public function __construct(Connection $connection,LoggerInterface $logger)
     {
         $this->connection = $connection;
+	$this->logger     = $logger;
     }
 
 
