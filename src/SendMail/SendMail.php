@@ -7,6 +7,7 @@ use Contao\BackendTemplate;
 use Contao\System;
 use Contao\StringUtil;
 use Contao\Controller;
+use Contao\CoreBundle\Monolog\ContaoContext;
 use Doctrine\DBAL\Connection;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpFoundation\Request;
@@ -124,10 +125,10 @@ class SendMail
 				}
 			}
 		}
-		
-		\Contao\Log::add('BirthdayMailer: Daily sending of birthday mail finished. Send ' . sizeof($alreadySendTo) . ' emails. '
+
+		$logger->info('BirthdayMailer: Daily sending of birthday mail finished. Send ' . sizeof($alreadySendTo) . ' emails. '
 							. sizeof($notSendCauseOfError) . ' emails could not be send due to errors. '
-							. sizeof($notSendCauseOfAbortion) . ' emails were aborted due to custom hooks. See birthdaymails.log for details.', 'GeburtstagsmailBundle sendBirthdayMail()', TL_CRONl, \Contao\Log::DEBUG);
+							. sizeof($notSendCauseOfAbortion) . ' emails were aborted due to custom hooks. See birthdaymails.log for details.', array('contao' => new ContaoContext(__FUNCTION__, ContaoContext::GENERAL)));
 		
 		return array('success' => sizeof($alreadySendTo), 'failed' => $notSendCauseOfError, 'aborted' => $notSendCauseOfAbortion);
 	}
@@ -190,7 +191,7 @@ class SendMail
 		if ($GLOBALS['TL_CONFIG']['birthdayMailerDeveloperMode'] || $GLOBALS['TL_CONFIG']['birthdayMailerLogDebugInfo'])
 		{
 			$mailTextUsageOutput = $config->mailUseCustomText ? 'yes' : 'no';
-			\Contao\Log::add('Geburtstagsmailer: These are additional debugging information that will only be logged in developer mode or if debugging is enabled.'
+			$logger->info('Geburtstagsmailer: These are additional debugging information that will only be logged in developer mode or if debugging is enabled.'
 									 . ' | Userlanguage = ' . $config->language
 								   . ' | used language = ' . $language
 								   . ' | mailTextUsage = ' . $mailTextUsageOutput
@@ -198,7 +199,7 @@ class SendMail
 								   . ' | email = ' . $config->email
 								   . ' | subject = ' . $emailSubject
 								   . ' | text = ' . $emailText
-								   . ' | html = ' . $emailHtml, 'GeburtstagsmailBundle sendMail()', TL_CRON, \Contao\Log::DEBUG);
+								   . ' | html = ' . $emailHtml, array('contao' => new ContaoContext(__FUNCTION__, ContaoContext::GENERAL)));
 			
 		}
 		
