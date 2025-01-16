@@ -21,11 +21,11 @@ class SendMail
 	private $logger;
 	private $request;
 
-    public function __construct(Connection $connection,LoggerInterface $logger,Request $request)
+    public function __construct(Connection $connection,LoggerInterface $logger,RequestStack $requestStack)
     {
         $this->connection = $connection;
 	$this->logger     = $logger;
-	$this->request	= $request;
+	$this->request = $requestStack->getCurrentRequest();
     }
 
 
