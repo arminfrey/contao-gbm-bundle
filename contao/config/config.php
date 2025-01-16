@@ -3,7 +3,7 @@
 
 use Arminfrey\ContaoGbmBundle\ContaoGbmBundle;
 use Arminfrey\ContaoGbmBundle\Model\ContaoGbmModel;
-use Arminfrey\ContaoGbmBundle\Services\SendMail;
+use Arminfrey\ContaoGbmBundle\SendMail\SendMail;
 
 /**
  * -------------------------------------------------------------------------
