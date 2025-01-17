@@ -95,7 +95,6 @@ class SendMail
 			. "WHERE tl_member.disable = 0 "
 			. "AND DATE_FORMAT(CURRENT_DATE(), '%d.%c') = DATE_FORMAT(DATE_ADD(FROM_UNIXTIME(0), interval tl_member.dateOfBirth second), '%d.%c') "
 			. "ORDER BY tl_member.id, tl_geburtstagsmail.priority DESC");
-		var_dump($config);
 		
 		foreach ($config as $conf) 
 		{
@@ -111,7 +110,7 @@ class SendMail
 					{
 						$this->import($callback[0]);
 						$blnAbortSendMail = $this->{$callback[0]}->{$callback[1]}($config, $blnAbortSendMail);
-						var_dump($blnAbortSendMail);
+						var_dump("abort" . $blnAbortSendMail);
 					}
 				}
 				
@@ -120,7 +119,7 @@ class SendMail
 					if ($this->sendMail($conf))
 					{
 						$alreadySendTo[] =  $conf->id;
-						var_dump("sendMail" . $conf-id);
+						var_dump("sendMail" . $conf->id);
 					}
 					else
 					{
