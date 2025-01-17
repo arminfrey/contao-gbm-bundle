@@ -81,7 +81,6 @@ class SendMail
 	 */
 	public function sendBirthdayMail()
 	{
-		print_r("in sendBirthdayMail");
 		$alreadySendTo = array();
 		$notSendCauseOfError = array();
 		$notSendCauseOfAbortion = array();
@@ -98,11 +97,13 @@ class SendMail
 		
 		foreach ($config as $conf) 
 		{
+			print_r("in sendBirthdayMail config");
 			if(($GLOBALS['TL_CONFIG']['birthdayMailerDeveloperMode'] && 
 				$GLOBALS['TL_CONFIG']['birthdayMailerDeveloperModeIgnoreDate']) 
 				&& ($this->allowSendingDuplicates($alreadySendTo, $conf)))
 			{
 				// now check via custom hook, if sending should be aborted
+				print_r("in if develop...");
 				$blnAbortSendMail = false;
 				if (isset($GLOBALS['TL_HOOKS']['birthdayMailerAbortSendMail']) && is_array($GLOBALS['TL_HOOKS']['birthdayMailerAbortSendMail']))
 				{
@@ -113,7 +114,7 @@ class SendMail
 						
 					}
 				}
-				
+				print_r("for der if");
 				if (!$blnAbortSendMail)
 				{
 					var_dump("nicht aborted" . this->sendMail($conf));
