@@ -106,15 +106,9 @@ class SendMail
 			}
 			else
 			{
-					$notSendCauseOfError[] =  array('id' => $conf->id, 'firstname' => $conf->firstname, 'lastname' => $conf->lastname, 'email' => $conf->email);
+				$notSendCauseOfError[] =  array('id' => $conf->id, 'firstname' => $conf->firstname, 'lastname' => $conf->lastname, 'email' => $conf->email);
 			}
-		}
-			/*else
-			{
-				$notSendCauseOfAbortion[] =  array('id' => $conf->id, 'firstname' => $conf->firstname, 'lastname' => $conf->lastname, 'email' => $conf->email);
-			}*/
-			//}
-		
+		}		
 		
 		$this->logger->info('BirthdayMailer: Daily sending of birthday mail finished. Send ' . sizeof($alreadySendTo) . ' emails. '
 							. sizeof($notSendCauseOfError) . ' emails could not be send due to errors. '
@@ -134,7 +128,7 @@ class SendMail
 	private function getEmailText ($textType, $config, $language)
 	{
 		$text = "";
-
+		var_dump($config);
 		if ($config->mailUseCustomText)
 		{
 			$text = $GLOBALS['TL_LANG']['Geburtstagsmail']['mail'][$config->mailTextKey][$textType][$language];
@@ -172,7 +166,7 @@ class SendMail
 			$language = self::DEFAULT_LANGUAGE;
 		//}
 		System::loadLanguageFile('Geburtstagsmailer', $language);
-		
+		var_dump("in sendMail" . $conf);
 		$emailSubject = $this->getEmailText('subject', $config, $language);
 		$emailText = $this->getEmailText('text', $config, $language);
 		$emailHtml = $this->getEmailText('html', $config, $language);
