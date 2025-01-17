@@ -33,8 +33,7 @@ class SendMail
 		$isBackend = System::getContainer()->get('contao.routing.scope_matcher')->isBackendRequest(System::getContainer()->get('request_stack')->getCurrentRequest() ?? \Symfony\Component\HttpFoundation\Request::create(''));
 		if ($isBackend)
 		{
-			$result = $this->sendBirthdayMail();
-			print_r("im manually");			
+			$result = $this->sendBirthdayMail();	
 			// Create template object
 			$objTemplate = new BackendTemplate('be_geburtstagsmail');
 			$cleanedUrl = str_replace($this->request->query->get('key'), '', $this->request->getUri());
@@ -98,12 +97,13 @@ class SendMail
 		foreach ($config as $conf) 
 		{
 			print_r("in sendBirthdayMail config");
-			if(($GLOBALS['TL_CONFIG']['birthdayMailerDeveloperMode'] && 
+			
+			/*if(($GLOBALS['TL_CONFIG']['birthdayMailerDeveloperMode'] && 
 				$GLOBALS['TL_CONFIG']['birthdayMailerDeveloperModeIgnoreDate']) 
 				&& ($this->allowSendingDuplicates($alreadySendTo, $conf)))
 			{
 				// now check via custom hook, if sending should be aborted
-				print_r("in if develop...");
+				
 				$blnAbortSendMail = false;
 				if (isset($GLOBALS['TL_HOOKS']['birthdayMailerAbortSendMail']) && is_array($GLOBALS['TL_HOOKS']['birthdayMailerAbortSendMail']))
 				{
@@ -113,27 +113,28 @@ class SendMail
 						$blnAbortSendMail = $this->{$callback[0]}->{$callback[1]}($config, $blnAbortSendMail);
 						
 					}
-				}
-				print_r("for der if");
-				if (!$blnAbortSendMail)
-				{
-					var_dump("nicht aborted" . this->sendMail($conf));
-					if ($this->sendMail($conf))
-					{
-						$alreadySendTo[] =  $conf->id;
-						var_dump("alreadySendto" . $conf->id);
-					}
-					else
-					{
-						$notSendCauseOfError[] =  array('id' => $conf->id, 'firstname' => $conf->firstname, 'lastname' => $conf->lastname, 'email' => $conf->email);
-					}
-				}
-				else
-				{
-					$notSendCauseOfAbortion[] =  array('id' => $conf->id, 'firstname' => $conf->firstname, 'lastname' => $conf->lastname, 'email' => $conf->email);
-				}
+				}*/
+			
+				//if (!$blnAbortSendMail)
+				//{
+					
+			
+					
+			if ($this->sendMail($conf))
+			{
+				$alreadySendTo[] =  $conf->id;
+			}
+			else
+			{
+					$notSendCauseOfError[] =  array('id' => $conf->id, 'firstname' => $conf->firstname, 'lastname' => $conf->lastname, 'email' => $conf->email);
 			}
 		}
+			/*else
+			{
+				$notSendCauseOfAbortion[] =  array('id' => $conf->id, 'firstname' => $conf->firstname, 'lastname' => $conf->lastname, 'email' => $conf->email);
+			}*/
+			//}
+		
 		
 		$this->logger->info('BirthdayMailer: Daily sending of birthday mail finished. Send ' . sizeof($alreadySendTo) . ' emails. '
 							. sizeof($notSendCauseOfError) . ' emails could not be send due to errors. '
