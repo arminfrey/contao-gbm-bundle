@@ -117,6 +117,7 @@ class SendMail
 				
 				if (!$blnAbortSendMail)
 				{
+					var_dump(this->sendMail($conf));
 					if ($this->sendMail($conf))
 					{
 						$alreadySendTo[] =  $conf->id;
@@ -189,7 +190,8 @@ class SendMail
 		{
 			$language = self::DEFAULT_LANGUAGE;
 		}
-		
+
+		var_dump("in sendMail");
 		System::loadLanguageFile('Geburtstagsmailer', $language);
 		
 		$emailSubject = $this->getEmailText('subject', $config, $language);
@@ -216,7 +218,7 @@ class SendMail
 		$objEmail->logFile = 'birthdaymails.log';
 		
 		$objEmail->from = $config->mailSender;
-		var_dump($objEmail);
+		var_dump("objEmail" . $objEmail);
 		
 		if (strlen($config->mailSenderName) > 0)
 		{
