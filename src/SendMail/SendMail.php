@@ -40,7 +40,6 @@ class SendMail
 			$cleanedUrl = str_replace($this->request->query->get('key'), '', $this->request->getUri());
 			$cleanedUrl = str_replace($this->request->query->get('rt'), '', $cleanedUrl);
 			$cleanedUrl = str_replace($this->request->query->get('ref'), '', $cleanedUrl);
-			var_dump($cleanedUrl);
 			$escapedTitle = StringUtil::specialchars($GLOBALS['TL_LANG']['MSC']['backBT']);
 			$objTemplate->backLink = '<a href="' . $cleanedUrl . '" class="header_back" title="' . $escapedTitle . '" accesskey="b">' . $escapedTitle . '</a>';
 			//$objTemplate->backLink = '<a href="'.\ampersand(str_replace('&key=sendBirthdayMail', '', $this->Environment->request)).'" class="header_back" title="'.specialchars($GLOBALS['TL_LANG']['MSC']['backBT']).'" accesskey="b">'.$GLOBALS['TL_LANG']['MSC']['backBT'].'</a>';
@@ -96,13 +95,14 @@ class SendMail
 			. "WHERE tl_member.disable = 0 "
 			. "AND DATE_FORMAT(CURRENT_DATE(), '%d.%c') = DATE_FORMAT(DATE_ADD(FROM_UNIXTIME(0), interval tl_member.dateOfBirth second), '%d.%c') "
 			. "ORDER BY tl_member.id, tl_geburtstagsmail.priority DESC");
+		var_dump($config);
 		
 		foreach ($config as $conf) 
 		{
-				if(($GLOBALS['TL_CONFIG']['birthdayMailerDeveloperMode'] && 
-				   $GLOBALS['TL_CONFIG']['birthdayMailerDeveloperModeIgnoreDate']) 
+			if(($GLOBALS['TL_CONFIG']['birthdayMailerDeveloperMode'] && 
+				$GLOBALS['TL_CONFIG']['birthdayMailerDeveloperModeIgnoreDate']) 
 				&& ($this->allowSendingDuplicates($alreadySendTo, $conf)))
-				{
+			{
 				// now check via custom hook, if sending should be aborted
 				$blnAbortSendMail = false;
 				if (isset($GLOBALS['TL_HOOKS']['birthdayMailerAbortSendMail']) && is_array($GLOBALS['TL_HOOKS']['birthdayMailerAbortSendMail']))
@@ -111,6 +111,7 @@ class SendMail
 					{
 						$this->import($callback[0]);
 						$blnAbortSendMail = $this->{$callback[0]}->{$callback[1]}($config, $blnAbortSendMail);
+						var_dump($blnAbortSendMail);
 					}
 				}
 				
@@ -119,6 +120,7 @@ class SendMail
 					if ($this->sendMail($conf))
 					{
 						$alreadySendTo[] =  $conf->id;
+						var_dump("sendMail" . $conf-id);
 					}
 					else
 					{
@@ -134,7 +136,7 @@ class SendMail
 
 		$this->logger->info('BirthdayMailer: Daily sending of birthday mail finished. Send ' . sizeof($alreadySendTo) . ' emails. '
 							. sizeof($notSendCauseOfError) . ' emails could not be send due to errors. '
-							. sizeof($notSendCauseOfAbortion) . ' emails were aborted due to custom hooks. See birthdaymails.log for details.', array('contao' => new ContaoContext(__FUNCTION__, ContaoContext::GENERAL)));
+							. sizeof($notSendCauseOfAbortion) . ' emails were aborted due to custom hooks.', array('contao' => new ContaoContext(__METHOD__, ContaoContext::GENERAL)));
 		
 		return array('success' => sizeof($alreadySendTo), 'failed' => $notSendCauseOfError, 'aborted' => $notSendCauseOfAbortion);
 	}
@@ -205,7 +207,7 @@ class SendMail
 								   . ' | email = ' . $config->email
 								   . ' | subject = ' . $emailSubject
 								   . ' | text = ' . $emailText
-								   . ' | html = ' . $emailHtml, array('contao' => new ContaoContext(__FUNCTION__, ContaoContext::GENERAL)));
+								   . ' | html = ' . $emailHtml, array('contao' => new ContaoContext(__METHOD__, ContaoContext::GENERAL)));
 			
 		}
 		
@@ -214,6 +216,8 @@ class SendMail
 		$objEmail->logFile = 'birthdaymails.log';
 		
 		$objEmail->from = $config->mailSender;
+		var_dump($objEmail);
+		
 		if (strlen($config->mailSenderName) > 0)
 		{
 			$objEmail->fromName = $config->mailSenderName;
