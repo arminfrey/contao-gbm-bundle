@@ -166,7 +166,7 @@ class SendMail
 			$language = self::DEFAULT_LANGUAGE;
 		//}
 		System::loadLanguageFile('Geburtstagsmailer', $language);
-		var_dump("in sendMail" . $conf);
+		var_dump("in sendMail" . $config);
 		$emailSubject = $this->getEmailText('subject', $config, $language);
 		$emailText = $this->getEmailText('text', $config, $language);
 		$emailHtml = $this->getEmailText('html', $config, $language);
