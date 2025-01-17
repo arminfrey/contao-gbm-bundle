@@ -34,8 +34,7 @@ class SendMail
 		if ($isBackend)
 		{
 			$result = $this->sendBirthdayMail();
-			var_dump("result" . $result);
-			
+			print_f("im manually");			
 			// Create template object
 			$objTemplate = new BackendTemplate('be_geburtstagsmail');
 			$cleanedUrl = str_replace($this->request->query->get('key'), '', $this->request->getUri());
@@ -82,7 +81,7 @@ class SendMail
 	 */
 	public function sendBirthdayMail()
 	{
-		
+		print_f("in sendBirthdayMail");
 		$alreadySendTo = array();
 		$notSendCauseOfError = array();
 		$notSendCauseOfAbortion = array();
@@ -111,17 +110,17 @@ class SendMail
 					{
 						$this->import($callback[0]);
 						$blnAbortSendMail = $this->{$callback[0]}->{$callback[1]}($config, $blnAbortSendMail);
-						var_dump("abort" . $blnAbortSendMail);
+						
 					}
 				}
 				
 				if (!$blnAbortSendMail)
 				{
-					var_dump(this->sendMail($conf));
+					var_dump("nicht aborted" . this->sendMail($conf));
 					if ($this->sendMail($conf))
 					{
 						$alreadySendTo[] =  $conf->id;
-						var_dump("sendMail" . $conf->id);
+						var_dump("alreadySendto" . $alreadySendTo[]);
 					}
 					else
 					{
@@ -191,7 +190,7 @@ class SendMail
 			$language = self::DEFAULT_LANGUAGE;
 		}
 
-		var_dump("in sendMail");
+		print_f("in sendMail");
 		System::loadLanguageFile('Geburtstagsmailer', $language);
 		
 		$emailSubject = $this->getEmailText('subject', $config, $language);
