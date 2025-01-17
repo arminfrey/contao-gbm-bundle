@@ -34,6 +34,7 @@ class SendMail
 		if ($isBackend)
 		{
 			$result = $this->sendBirthdayMail();
+			var_dump("result" . $result);
 			
 			// Create template object
 			$objTemplate = new BackendTemplate('be_geburtstagsmail');
@@ -132,7 +133,7 @@ class SendMail
 				}
 			}
 		}
-
+		
 		$this->logger->info('BirthdayMailer: Daily sending of birthday mail finished. Send ' . sizeof($alreadySendTo) . ' emails. '
 							. sizeof($notSendCauseOfError) . ' emails could not be send due to errors. '
 							. sizeof($notSendCauseOfAbortion) . ' emails were aborted due to custom hooks.', array('contao' => new ContaoContext(__METHOD__, ContaoContext::GENERAL)));
