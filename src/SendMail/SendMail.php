@@ -120,7 +120,7 @@ class SendMail
 					if ($this->sendMail($conf))
 					{
 						$alreadySendTo[] =  $conf->id;
-						var_dump("alreadySendto" . $alreadySendTo[]);
+						var_dump("alreadySendto" . $conf->id);
 					}
 					else
 					{
