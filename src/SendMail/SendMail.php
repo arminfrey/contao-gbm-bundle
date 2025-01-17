@@ -21,6 +21,7 @@ class SendMail
 {
 	private Connection $connection;
 	const DEFAULT_LANGUAGE = 'de';
+	private MailerInterface $mailer;
 	
     public function __construct(Connection $connection, LoggerInterface $logger, RequestStack $requestStack, MailerInterface $mailer)
     {
