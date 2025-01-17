@@ -100,30 +100,6 @@ class SendMail
 		
 		foreach ($config as $conf) 
 		{
-			print_r("in sendBirthdayMail config");
-			
-			/*if(($GLOBALS['TL_CONFIG']['birthdayMailerDeveloperMode'] && 
-				$GLOBALS['TL_CONFIG']['birthdayMailerDeveloperModeIgnoreDate']) 
-				&& ($this->allowSendingDuplicates($alreadySendTo, $conf)))
-			{
-				// now check via custom hook, if sending should be aborted
-				
-				$blnAbortSendMail = false;
-				if (isset($GLOBALS['TL_HOOKS']['birthdayMailerAbortSendMail']) && is_array($GLOBALS['TL_HOOKS']['birthdayMailerAbortSendMail']))
-				{
-					foreach ($GLOBALS['TL_HOOKS']['birthdayMailerAbortSendMail'] as $callback)
-					{
-						$this->import($callback[0]);
-						$blnAbortSendMail = $this->{$callback[0]}->{$callback[1]}($config, $blnAbortSendMail);
-						
-					}
-				}*/
-			
-				//if (!$blnAbortSendMail)
-				//{
-					
-			
-					
 			if ($this->sendMail($conf))
 			{
 				$alreadySendTo[] =  $conf->id;
@@ -215,7 +191,7 @@ class SendMail
 								   . ' | html = ' . $emailHtml, array('contao' => new ContaoContext(__METHOD__, ContaoContext::GENERAL)));
 			
 		}
-
+		print_r($config->mailSender);
 		$email = (new Email())
             		->from($config->mailSender)
             		->to($GLOBALS['TL_CONFIG']['birthdayMailerDeveloperMode'] ? $GLOBALS['TL_CONFIG']['birthdayMailerDeveloperModeEmail'] : $config->email)
