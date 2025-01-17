@@ -34,7 +34,7 @@ class SendMail
 		if ($isBackend)
 		{
 			$result = $this->sendBirthdayMail();
-			print_f("im manually");			
+			print_r("im manually");			
 			// Create template object
 			$objTemplate = new BackendTemplate('be_geburtstagsmail');
 			$cleanedUrl = str_replace($this->request->query->get('key'), '', $this->request->getUri());
@@ -81,7 +81,7 @@ class SendMail
 	 */
 	public function sendBirthdayMail()
 	{
-		print_f("in sendBirthdayMail");
+		print_r("in sendBirthdayMail");
 		$alreadySendTo = array();
 		$notSendCauseOfError = array();
 		$notSendCauseOfAbortion = array();
@@ -190,7 +190,7 @@ class SendMail
 			$language = self::DEFAULT_LANGUAGE;
 		}
 
-		print_f("in sendMail");
+		print_r("in sendMail");
 		System::loadLanguageFile('Geburtstagsmailer', $language);
 		
 		$emailSubject = $this->getEmailText('subject', $config, $language);
