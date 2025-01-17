@@ -14,17 +14,20 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Mailer\MailerInterface;
+use Symfony\Component\Mime\Email;
 
 class SendMail
 {
 	private Connection $connection;
 	const DEFAULT_LANGUAGE = 'de';
 	
-    public function __construct(Connection $connection, LoggerInterface $logger, RequestStack $requestStack)
+    public function __construct(Connection $connection, LoggerInterface $logger, RequestStack $requestStack, MailerInterface $mailer)
     {
         $this->connection = $connection;
 	$this->logger     = $logger;
 	$this->request = $requestStack->getCurrentRequest();
+	$this->mailer = $mailer;
     }
 
 
@@ -191,8 +194,6 @@ class SendMail
 		{
 			$language = self::DEFAULT_LANGUAGE;
 		}
-
-		print_r("in sendMail");
 		System::loadLanguageFile('Geburtstagsmailer', $language);
 		
 		$emailSubject = $this->getEmailText('subject', $config, $language);
@@ -213,53 +214,31 @@ class SendMail
 								   . ' | html = ' . $emailHtml, array('contao' => new ContaoContext(__METHOD__, ContaoContext::GENERAL)));
 			
 		}
-		
-		$objEmail = new \Email();
 
-		$objEmail->logFile = 'birthdaymails.log';
-		
-		$objEmail->from = $config->mailSender;
-		var_dump("objEmail" . $objEmail);
-		
-		if (strlen($config->mailSenderName) > 0)
-		{
-			$objEmail->fromName = $config->mailSenderName;
-		}
-		$objEmail->subject = $emailSubject;
-		$objEmail->text = $emailText;
-		$objEmail->html = $emailHtml;
-		
-		try
-		{
-			$emailTo = $config->email;
-			
-			if ($GLOBALS['TL_CONFIG']['birthdayMailerDeveloperMode'])
-			{
-				$emailTo = $GLOBALS['TL_CONFIG']['birthdayMailerDeveloperModeEmail'];
-			}
-			else
-			{
-				if (strlen($config->mailCopy) > 0)
-				{
-					$emailCC = trimsplit(',', $config->mailCopy);
-					$objEmail->sendCc($emailCC);
-				}
-				
-				if (strlen($config->mailBlindCopy) > 0)
-				{
-					$emailBCC = trimsplit(',', $config->mailBlindCopy);
-					$objEmail->sendBcc($emailBCC);
-				}
-				
-				$emailTo = $config->email;
-			}
-			return $objEmail->sendTo($emailTo);
-		}
-		catch (Swift_RfcComplianceException $e)
-		{
-			return false;
-		}
-	}
+		$email = (new Email())
+            		->from($config->mailSender)
+            		->to($GLOBALS['TL_CONFIG']['birthdayMailerDeveloperMode'] ? $GLOBALS['TL_CONFIG']['birthdayMailerDeveloperModeEmail'] : $config->email)
+            		->subject($emailSubject)
+            		->text($emailText)
+            		->html($emailHtml);
+
+        	// Add CC and BCC if they are set
+        	if (strlen($config->mailCopy) > 0) {
+           		$email->addCc(trimsplit(',', $config->mailCopy));
+        	}
+
+        	if (strlen($config->mailBlindCopy) > 0) {
+           		$email->addBcc(trimsplit(',', $config->mailBlindCopy));
+        	}
+
+        	try {
+            		$this->mailer->send($email);
+            		return true; // Email sent successfully
+       		} catch (\Exception $e) {
+            		$this->logger->error('Error sending email: '.$e->getMessage());
+            		return false; // Email sending failed
+        	}
+    	}
 
 	/**
 	 * Checks if the member is active.
