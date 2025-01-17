@@ -166,11 +166,11 @@ class SendMail
 	 */
 	private function sendMail($config)
 	{
-		$language = $config->language;
-		if (strlen($language) == 0)
-		{
+		//$language = $config->language;
+		//if (strlen($language) == 0)
+		//{
 			$language = self::DEFAULT_LANGUAGE;
-		}
+		//}
 		System::loadLanguageFile('Geburtstagsmailer', $language);
 		
 		$emailSubject = $this->getEmailText('subject', $config, $language);
