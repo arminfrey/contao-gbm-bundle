@@ -16,4 +16,5 @@ services:
         - '@doctrine.dbal.default_connection'
         - '@logger'
         - '@request_stack'
+        - '@mailer'
         public: true
