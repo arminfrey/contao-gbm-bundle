@@ -97,9 +97,10 @@ class SendMail
 			. "WHERE tl_member.disable = 0 "
 			. "AND DATE_FORMAT(CURRENT_DATE(), '%d.%c') = DATE_FORMAT(DATE_ADD(FROM_UNIXTIME(0), interval tl_member.dateOfBirth second), '%d.%c') "
 			. "ORDER BY tl_member.id, tl_geburtstagsmail.priority DESC");
-		
+		var_dump("als config " . $config);
 		foreach ($config as $conf) 
 		{
+			var_dump("als conf " . $conf);
 			if ($this->sendMail($conf))
 			{
 				$alreadySendTo[] =  $conf->id;
@@ -158,48 +159,48 @@ class SendMail
 	 * Send an email.
 	 * @return boolean
 	 */
-	private function sendMail($config) : bool
+	private function sendMail($conf) : bool
 	{
 		//$language = $config->language;
 		//if (strlen($language) == 0)
 		//{
 			$language = self::DEFAULT_LANGUAGE;
 		//}
-		var_dump("in sendmail" . $config);
+		var_dump("in sendmail" . $conf);
 		System::loadLanguageFile('Geburtstagsmailer', $language);
-		$emailSubject = $this->getEmailText('subject', $config, $language);
-		$emailText = $this->getEmailText('text', $config, $language);
-		$emailHtml = $this->getEmailText('html', $config, $language);
+		$emailSubject = $this->getEmailText('subject', $conf, $language);
+		$emailText = $this->getEmailText('text', $conf, $language);
+		$emailHtml = $this->getEmailText('html', $conf, $language);
 	
 		if ($GLOBALS['TL_CONFIG']['birthdayMailerDeveloperMode'] || $GLOBALS['TL_CONFIG']['birthdayMailerLogDebugInfo'])
 		{
 			$mailTextUsageOutput = $config->mailUseCustomText ? 'yes' : 'no';
 			$this->logger->info('Geburtstagsmailer: These are additional debugging information that will only be logged in developer mode or if debugging is enabled.'
-									 . ' | Userlanguage = ' . $config->language
+									 . ' | Userlanguage = ' . $conf->language
 								   . ' | used language = ' . $language
 								   . ' | mailTextUsage = ' . $mailTextUsageOutput
-								   . ' | mailTextKey = ' . $config->mailTextKey
-								   . ' | email = ' . $config->email
+								   . ' | mailTextKey = ' . $conf->mailTextKey
+								   . ' | email = ' . $conf->email
 								   . ' | subject = ' . $emailSubject
 								   . ' | text = ' . $emailText
 								   . ' | html = ' . $emailHtml, array('contao' => new ContaoContext(__METHOD__, ContaoContext::GENERAL)));
 			
 		}
-		print_r($config->mailSender);
+		print_r($conf->mailSender);
 		$email = (new Email())
-            		->from($config->mailSender)
-            		->to($GLOBALS['TL_CONFIG']['birthdayMailerDeveloperMode'] ? $GLOBALS['TL_CONFIG']['birthdayMailerDeveloperModeEmail'] : $config->email)
+            		->from($conf->mailSender)
+            		->to($GLOBALS['TL_CONFIG']['birthdayMailerDeveloperMode'] ? $GLOBALS['TL_CONFIG']['birthdayMailerDeveloperModeEmail'] : $conf->email)
             		->subject($emailSubject)
             		->text($emailText)
             		->html($emailHtml);
 
         	// Add CC and BCC if they are set
-        	if (strlen($config->mailCopy) > 0) {
-           		$email->addCc(trimsplit(',', $config->mailCopy));
+        	if (strlen($conf->mailCopy) > 0) {
+           		$email->addCc(trimsplit(',', $conf->mailCopy));
         	}
 
-        	if (strlen($config->mailBlindCopy) > 0) {
-           		$email->addBcc(trimsplit(',', $config->mailBlindCopy));
+        	if (strlen($conf->mailBlindCopy) > 0) {
+           		$email->addBcc(trimsplit(',', $conf->mailBlindCopy));
         	}
 
         	try {
