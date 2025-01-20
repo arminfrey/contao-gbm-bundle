@@ -159,13 +159,11 @@ class SendMail
 	 */
 	private function sendMail($conf) : bool
 	{
-		//$language = $config->language;
+		//$language = $conf->language;
 		//if (strlen($language) == 0)
 		//{
 			$language = self::DEFAULT_LANGUAGE;
 		//}
-		print_r("xxxx");
-		var_dump($conf);
 		System::loadLanguageFile('Geburtstagsmailer', $language);
 		$emailSubject = $this->getEmailText('subject', $conf, $language);
 		$emailText = $this->getEmailText('text', $conf, $language);
@@ -173,7 +171,7 @@ class SendMail
 	
 		if ($GLOBALS['TL_CONFIG']['birthdayMailerDeveloperMode'] || $GLOBALS['TL_CONFIG']['birthdayMailerLogDebugInfo'])
 		{
-			$mailTextUsageOutput = $config->mailUseCustomText ? 'yes' : 'no';
+			$mailTextUsageOutput = $conf->mailUseCustomText ? 'yes' : 'no';
 			$this->logger->info('Geburtstagsmailer: These are additional debugging information that will only be logged in developer mode or if debugging is enabled.'
 									 . ' | Userlanguage = ' . $conf->language
 								   . ' | used language = ' . $language
@@ -185,7 +183,7 @@ class SendMail
 								   . ' | html = ' . $emailHtml, array('contao' => new ContaoContext(__METHOD__, ContaoContext::GENERAL)));
 			
 		}
-		print_r($conf->mailSender);
+		vardump($conf);
 		$email = (new Email())
             		->from($conf->mailSender)
             		->to($GLOBALS['TL_CONFIG']['birthdayMailerDeveloperMode'] ? $GLOBALS['TL_CONFIG']['birthdayMailerDeveloperModeEmail'] : $conf->email)
