@@ -128,6 +128,7 @@ class SendMail
 	private function getEmailText ($textType, $config, $language)
 	{
 		$text = "";
+		var_dump("in gettext" . $config->mailUseCustomText);
 		if ($config->mailUseCustomText)
 		{
 			$text = $GLOBALS['TL_LANG']['Geburtstagsmail']['mail'][$config->mailTextKey][$textType][$language];
@@ -164,7 +165,7 @@ class SendMail
 		//{
 			$language = self::DEFAULT_LANGUAGE;
 		//}
-		var_dump($config);
+		var_dump("in sendmail" . $config);
 		System::loadLanguageFile('Geburtstagsmailer', $language);
 		$emailSubject = $this->getEmailText('subject', $config, $language);
 		$emailText = $this->getEmailText('text', $config, $language);
