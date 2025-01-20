@@ -157,13 +157,14 @@ class SendMail
 	 * Send an email.
 	 * @return boolean
 	 */
-	private function sendMail($config)
+	private function sendMail($config) : bool
 	{
 		//$language = $config->language;
 		//if (strlen($language) == 0)
 		//{
 			$language = self::DEFAULT_LANGUAGE;
 		//}
+		var_dump($config);
 		System::loadLanguageFile('Geburtstagsmailer', $language);
 		$emailSubject = $this->getEmailText('subject', $config, $language);
 		$emailText = $this->getEmailText('text', $config, $language);
