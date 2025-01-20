@@ -97,11 +97,8 @@ class SendMail
 			. "WHERE tl_member.disable = 0 "
 			. "AND DATE_FORMAT(CURRENT_DATE(), '%d.%c') = DATE_FORMAT(DATE_ADD(FROM_UNIXTIME(0), interval tl_member.dateOfBirth second), '%d.%c') "
 			. "ORDER BY tl_member.id, tl_geburtstagsmail.priority DESC");
-		var_dump($config);
-		print_r("--------------------");
 		foreach ($config as $conf) 
 		{
-			var_dump($conf);
 			if ($this->sendMail($conf))
 			{
 				$alreadySendTo[] =  $conf->id;
@@ -167,7 +164,7 @@ class SendMail
 		//{
 			$language = self::DEFAULT_LANGUAGE;
 		//}
-		print_f("xxxx");
+		print_r("xxxx");
 		var_dump($conf);
 		System::loadLanguageFile('Geburtstagsmailer', $language);
 		$emailSubject = $this->getEmailText('subject', $conf, $language);
