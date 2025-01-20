@@ -116,18 +116,10 @@ class SendMail
 		return array('success' => sizeof($alreadySendTo), 'failed' => $notSendCauseOfError, 'aborted' => $notSendCauseOfAbortion);
 	}
 	
-	/**
-	 * Get the text for specific types for the email. Fallback ist to 'default' if no text is set.
-	 * FALLBACK Chain:
-	 * 		1. check, if there is a text for the specified textKey and language (search in system/config/langconfig.php)
-	 *		2. if nothing found, check, if there is a text for the specified textKey and 'en' (search in system/config/langconfig.php)
-	 *		3. if nothing found, get default text in specified language
-	 *		4. if nothing found, get default text in language 'en'
-	 */
 	private function getEmailText ($textType, $config, $language)
 	{
 		$text = "";
-		var_dump($config->mailUseCustomText);
+		var_dump($config);
 		if ($config->mailUseCustomText)
 		{
 			$text = $GLOBALS['TL_LANG']['Geburtstagsmail']['mail'][$config->mailTextKey][$textType][$language];
