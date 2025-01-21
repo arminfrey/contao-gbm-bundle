@@ -182,7 +182,7 @@ class SendMail
             		->html($emailHtml);
 
         	// Add CC and BCC if they are set
-        	if (strlen($conf['mailCopy'] > 0) {
+        	if (strlen($conf['mailCopy']) > 0) {
            		$email->addCc(trimsplit(',', $conf['mailCopy']));
         	}
 
