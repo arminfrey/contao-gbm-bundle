@@ -121,17 +121,17 @@ class SendMail
 		$text = "";
 		if ($config['mailUseCustomText'] == "1")
 		{
-			$text = $GLOBALS['TL_LANG']['Geburtstagsmail']['mail'][$config['mailTextKey']][$textType][$language];
+			$text = $GLOBALS['TL_LANG']['Geburtstagsmailer']['mail'][$config['mailTextKey']][$textType][$language];
 			
 			if (strlen($text) == 0 && $language != self::DEFAULT_LANGUAGE)
 			{
-				$text = $GLOBALS['TL_LANG']['Geburtstagsmail']['mail'][$config['mailTextKey']][$textType][self::DEFAULT_LANGUAGE];
+				$text = $GLOBALS['TL_LANG']['Geburtstagsmailer']['mail'][$config['mailTextKey']][$textType][self::DEFAULT_LANGUAGE];
 			}
 		}
 
 		if (strlen($text) == 0)
 		{
-			$text = $GLOBALS['TL_LANG']['Geburtstagsmail']['mail']['default'][$textType];
+			$text = $GLOBALS['TL_LANG']['Geburtstagsmailer']['mail']['default'][$textType];
 		}
 
 		$textReplaced = $this->replaceBirthdayMailerInsertTags($text, $config, $language);
@@ -333,17 +333,17 @@ class SendMail
 
 		if ($config->mailUseCustomText)
 		{
-			$text = $GLOBALS['TL_LANG']['Geburtstagsmail']['mail'][$config['mailTextKey']][$textType][$language];
+			$text = $GLOBALS['TL_LANG']['Geburtstagsmailer']['mail'][$config['mailTextKey']][$textType][$language];
 			
 			if (strlen($text) == 0 && $language != self::DEFAULT_LANGUAGE)
 			{
-				$text = $GLOBALS['TL_LANG']['Geburtstagsmail']['mail'][$config['mailTextKey']][$textType][self::DEFAULT_LANGUAGE];
+				$text = $GLOBALS['TL_LANG']['Geburtstagsmailer']['mail'][$config['mailTextKey']][$textType][self::DEFAULT_LANGUAGE];
 			}
 		}
 
 		if (strlen($text) == 0)
 		{
-			$text = $GLOBALS['TL_LANG']['Geburtstagsmail']['mail']['default'][$textType];
+			$text = $GLOBALS['TL_LANG']['Geburtstagsmailer']['mail']['default'][$textType];
 		}
     		return $text;
 	}
