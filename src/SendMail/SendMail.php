@@ -101,11 +101,11 @@ class SendMail
 		{
 			if ($this->sendMail($conf))
 			{
-				$alreadySendTo[] =  $conf->id;
+				$alreadySendTo[] =  $conf['id'];
 			}
 			else
 			{
-				$notSendCauseOfError[] =  array('id' => $conf->id, 'firstname' => $conf->firstname, 'lastname' => $conf->lastname, 'email' => $conf->email);
+				$notSendCauseOfError[] =  array('id' => $conf['id'], 'firstname' => $conf['firstname'], 'lastname' => $conf['lastname'], 'email' => $conf['email']);
 			}
 		}		
 		
@@ -119,13 +119,13 @@ class SendMail
 	private function getEmailText ($textType, $config, $language)
 	{
 		$text = "";
-		if ($config->mailUseCustomText == "1")
+		if ($config['mailUseCustomText'] == "1")
 		{
-			$text = $GLOBALS['TL_LANG']['Geburtstagsmail']['mail'][$config->mailTextKey][$textType][$language];
+			$text = $GLOBALS['TL_LANG']['Geburtstagsmail']['mail'][$config['mailTextKey']][$textType][$language];
 			
 			if (strlen($text) == 0 && $language != self::DEFAULT_LANGUAGE)
 			{
-				$text = $GLOBALS['TL_LANG']['Geburtstagsmail']['mail'][$config->mailTextKey][$textType][self::DEFAULT_LANGUAGE];
+				$text = $GLOBALS['TL_LANG']['Geburtstagsmail']['mail'][$config['mailTextKey']][$textType][self::DEFAULT_LANGUAGE];
 			}
 		}
 
@@ -150,7 +150,7 @@ class SendMail
 	 */
 	private function sendMail($conf) : bool
 	{
-		//$language = $conf->language;
+		//$language = $conf['language'];
 		//if (strlen($language) == 0)
 		//{
 			$language = self::DEFAULT_LANGUAGE;
@@ -162,33 +162,32 @@ class SendMail
 	
 		if ($GLOBALS['TL_CONFIG']['birthdayMailerDeveloperMode'] || $GLOBALS['TL_CONFIG']['birthdayMailerLogDebugInfo'])
 		{
-			$mailTextUsageOutput = $conf->mailUseCustomText ? 'yes' : 'no';
+			$mailTextUsageOutput = $conf['mailUseCustomText'] ? 'yes' : 'no';
 			$this->logger->info('Geburtstagsmailer: These are additional debugging information that will only be logged in developer mode or if debugging is enabled.'
-									 . ' | Userlanguage = ' . $conf->language
+									 . ' | Userlanguage = ' . $conf['language']
 								   . ' | used language = ' . $language
 								   . ' | mailTextUsage = ' . $mailTextUsageOutput
-								   . ' | mailTextKey = ' . $conf->mailTextKey
-								   . ' | email = ' . $conf->email
+								   . ' | mailTextKey = ' . $conf['mailTextKey']
+								   . ' | email = ' . $conf['email']
 								   . ' | subject = ' . $emailSubject
 								   . ' | text = ' . $emailText
 								   . ' | html = ' . $emailHtml, array('contao' => new ContaoContext(__METHOD__, ContaoContext::GENERAL)));
 			
 		}
-		print_r($conf->mailSender);
 		$email = (new Email())
-            		->from($conf->mailSender)
-            		->to($GLOBALS['TL_CONFIG']['birthdayMailerDeveloperMode'] ? $GLOBALS['TL_CONFIG']['birthdayMailerDeveloperModeEmail'] : $conf->email)
+            		->from($conf['mailSender'])
+            		->to($GLOBALS['TL_CONFIG']['birthdayMailerDeveloperMode'] ? $GLOBALS['TL_CONFIG']['birthdayMailerDeveloperModeEmail'] : $conf['email'])
             		->subject($emailSubject)
             		->text($emailText)
             		->html($emailHtml);
 
         	// Add CC and BCC if they are set
-        	if (strlen($conf->mailCopy) > 0) {
-           		$email->addCc(trimsplit(',', $conf->mailCopy));
+        	if (strlen($conf['mailCopy'] > 0) {
+           		$email->addCc(trimsplit(',', $conf['mailCopy']));
         	}
 
-        	if (strlen($conf->mailBlindCopy) > 0) {
-           		$email->addBcc(trimsplit(',', $conf->mailBlindCopy));
+        	if (strlen($conf['mailBlindCopy']) > 0) {
+           		$email->addBcc(trimsplit(',', $conf['mailBlindCopy']));
         	}
 
         	try {
@@ -206,11 +205,11 @@ class SendMail
 	 */
 	/*private function isMemberActive($config)
 	{
-		if ($config->disable ||
-			(strlen($config->start) > 0 &&
-			$config->start > time()) ||
-			(strlen($config->stop) > 0 &&
-			$config->stop < time()))
+		if ($config['disable'] ||
+			(strlen($config['start']) > 0 &&
+			$config['start'] > time()) ||
+			(strlen($config['stop']) > 0 &&
+			$config['stop'] < time()))
 		{
 			return false;
 		}
@@ -223,11 +222,11 @@ class SendMail
 	 */
 	/*private function isMemberGroupActive($config)
 	{
-		if ($config->memberGroupDisable ||
-			(strlen($config->memberGroupStart) > 0 &&
-			$config->memberGroupStart > time()) ||
-			(strlen($config->memberGroupStop) > 0 &&
-			$config->memberGroupStop < time()))
+		if ($config['memberGroupDisable'] ||
+			(strlen($config['memberGroupStart']) > 0 &&
+			$config['memberGroupStart'] > time()) ||
+			(strlen($config['memberGroupStop']) > 0 &&
+			$config['memberGroupStop'] < time()))
 		{
 			return false;
 		}
@@ -240,7 +239,7 @@ class SendMail
 	 */
 	private function allowSendingDuplicates($alreadySendTo, $config)
 	{
-		if (!$GLOBALS['TL_CONFIG']['birthdayMailerAllowDuplicates'] && in_array($config->id, $alreadySendTo))
+		if (!$GLOBALS['TL_CONFIG']['birthdayMailerAllowDuplicates'] && in_array($config['id'], $alreadySendTo))
 		{
 			return false;
 		}
@@ -271,7 +270,7 @@ class SendMail
 					switch ($parts[1])
 					{
 						case 'salutation':
-							$salutation = $this->getSalutation($config, $language, 'salutation_' . $config->gender);
+							$salutation = $this->getSalutation($config, $language, 'salutation_' . $config['gender']);
 							if (strlen($salutation) == 0)
 							{
 								$salutation = $this->getSalutation($config, $language, 'salutation');
@@ -280,11 +279,11 @@ class SendMail
 							break;
 							
 						case 'name':
-							$textArray[$count] = trim($config->firstname . ' ' . $config->lastname);
+							$textArray[$count] = trim($config['firstname'] . ' ' . $config['lastname']);
 							break;
 							
 						case 'groupname':
-							$textArray[$count] = trim($config->memberGroupName);
+							$textArray[$count] = trim($config['memberGroupName']);
 							break;
 							
 						case 'password':
@@ -293,7 +292,7 @@ class SendMail
 							break;
 							
 						case 'age':
-							$textArray[$count] = (date("Y") - date("Y", $config->dateOfBirth));
+							$textArray[$count] = (date("Y") - date("Y", $config['dateOfBirth']));
 							break;
 							
 						default:
@@ -306,11 +305,11 @@ class SendMail
 					switch ($parts[1])
 					{
 						case 'email':
-							$textArray[$count] = trim($config->mailSender);
+							$textArray[$count] = trim($config['mailSender']);
 							break;
 							
 						case 'name':
-							$textArray[$count] = trim($config->mailSenderName);
+							$textArray[$count] = trim($config['mailSenderName']);
 							break;
 					}
 					break;
@@ -334,11 +333,11 @@ class SendMail
 
 		if ($config->mailUseCustomText)
 		{
-			$text = $GLOBALS['TL_LANG']['Geburtstagsmail']['mail'][$config->mailTextKey][$textType][$language];
+			$text = $GLOBALS['TL_LANG']['Geburtstagsmail']['mail'][$config['mailTextKey']][$textType][$language];
 			
 			if (strlen($text) == 0 && $language != self::DEFAULT_LANGUAGE)
 			{
-				$text = $GLOBALS['TL_LANG']['Geburtstagsmail']['mail'][$config->mailTextKey][$textType][self::DEFAULT_LANGUAGE];
+				$text = $GLOBALS['TL_LANG']['Geburtstagsmail']['mail'][$config['mailTextKey']][$textType][self::DEFAULT_LANGUAGE];
 			}
 		}
 
