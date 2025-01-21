@@ -34,7 +34,7 @@ $GLOBALS['TL_DCA']['tl_geburtstagsmail'] = array(
 			'sendBirthdayMail' => array(
 				'label'               => &$GLOBALS['TL_LANG']['tl_geburtstagsmail']['sendBirthdayMail'],
 				'href'                => 'key=sendBirthdayMail',
-				'attributes'          => 'onclick="Backend.getScrollOffset();" style="background: url(src//assets/sendBirthdayMail.png) no-repeat scroll left center transparent; margin-left: 15px; padding: 2px 0 3px 20px;"'
+				'attributes'          => 'onclick="Backend.getScrollOffset();" style="background: url(../..//assets/sendBirthdayMail.png) no-repeat scroll left center transparent; margin-left: 15px; padding: 2px 0 3px 20px;"'
 			),
 			'all' => array(
 				'label'               => &$GLOBALS['TL_LANG']['MSC']['all'],
