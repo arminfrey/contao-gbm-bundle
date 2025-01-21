@@ -20,7 +20,7 @@ Liebe Grüße,
 Vorstand der Krettenweiber- und Narrenbüttelgruppe
 ';
 $GLOBALS['TL_LANG']['Geburtstagsmailer']['mail']['default']['html'] = '
-{{birthdaychild::salutation}} <b>{{birthdaychild::firstname}} </b>,
+{{birthdaychild::salutation}} <b>{{birthdaychild::firstname}}</b>,
 <br/><br/>
 ich gratuliere dir ganz herzlich zu deinem {{birthdaychild::age}} Geburtstag. Ich wünsche dir alles Gute, Glück und Gesundheit.
 Außerdem wünsche ich dir, dass du noch lange an unseren Aktivitäten teilnehmen kannst.<br/><br/>
