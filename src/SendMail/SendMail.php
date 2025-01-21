@@ -120,7 +120,7 @@ class SendMail
 	{
 		$text = "";
 		var_dump($config);
-		if ($config->mailUseCustomText)
+		if ($config->mailUseCustomText == "1")
 		{
 			$text = $GLOBALS['TL_LANG']['Geburtstagsmail']['mail'][$config->mailTextKey][$textType][$language];
 			
@@ -175,7 +175,6 @@ class SendMail
 								   . ' | html = ' . $emailHtml, array('contao' => new ContaoContext(__METHOD__, ContaoContext::GENERAL)));
 			
 		}
-		vardump($conf);
 		$email = (new Email())
             		->from($conf->mailSender)
             		->to($GLOBALS['TL_CONFIG']['birthdayMailerDeveloperMode'] ? $GLOBALS['TL_CONFIG']['birthdayMailerDeveloperModeEmail'] : $conf->email)
