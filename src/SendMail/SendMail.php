@@ -297,7 +297,7 @@ class SendMail
 							break;
 							
 						default:
-							$textArray[$count] = $config{$parts[1];
+							$textArray[$count] = $config[$parts[1]];
 							break;
 					}
 					break;
