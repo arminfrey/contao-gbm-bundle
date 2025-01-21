@@ -183,11 +183,12 @@ class SendMail
 
         	// Add CC and BCC if they are set
         	if (strlen($conf['mailCopy']) > 0) {
-           		$email->addCc(trimsplit(',', $conf['mailCopy']));
+           		//$email->addCc(trimsplit(',', $conf['mailCopy']));
+			$email->addCc($conf['mailCopy']);
         	}
 
         	if (strlen($conf['mailBlindCopy']) > 0) {
-           		$email->addBcc(trimsplit(',', $conf['mailBlindCopy']));
+           		$email->addBcc($conf['mailBlindCopy']);
         	}
 
         	try {
@@ -331,7 +332,7 @@ class SendMail
 	{
 		$text = "";
 
-		if ($config->mailUseCustomText)
+		if ($config['mailUseCustomText'])
 		{
 			$text = $GLOBALS['TL_LANG']['Geburtstagsmailer']['mail'][$config['mailTextKey']][$textType];
 			
