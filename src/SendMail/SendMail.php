@@ -121,11 +121,11 @@ class SendMail
 		$text = "";
 		if ($config['mailUseCustomText'] == "1")
 		{
-			$text = $GLOBALS['TL_LANG']['Geburtstagsmailer']['mail'][$config['mailTextKey']][$textType][$language];
+			$text = $GLOBALS['TL_LANG']['Geburtstagsmailer']['mail'][$config['mailTextKey']][$textType];
 			
 			if (strlen($text) == 0 && $language != self::DEFAULT_LANGUAGE)
 			{
-				$text = $GLOBALS['TL_LANG']['Geburtstagsmailer']['mail'][$config['mailTextKey']][$textType][self::DEFAULT_LANGUAGE];
+				$text = $GLOBALS['TL_LANG']['Geburtstagsmailer']['mail'][$config['mailTextKey']][$textType];
 			}
 		}
 
@@ -333,11 +333,11 @@ class SendMail
 
 		if ($config->mailUseCustomText)
 		{
-			$text = $GLOBALS['TL_LANG']['Geburtstagsmailer']['mail'][$config['mailTextKey']][$textType][$language];
+			$text = $GLOBALS['TL_LANG']['Geburtstagsmailer']['mail'][$config['mailTextKey']][$textType];
 			
 			if (strlen($text) == 0 && $language != self::DEFAULT_LANGUAGE)
 			{
-				$text = $GLOBALS['TL_LANG']['Geburtstagsmailer']['mail'][$config['mailTextKey']][$textType][self::DEFAULT_LANGUAGE];
+				$text = $GLOBALS['TL_LANG']['Geburtstagsmailer']['mail'][$config['mailTextKey']][$textType];
 			}
 		}
 
