@@ -23,8 +23,6 @@ $GLOBALS['TL_MODELS']['tl_geburtstagsmail'] = ContaoGbmModel::class;
 
 /**
  * -------------------------------------------------------------------------
- * CRON
+ * CRON vor 4.13
  * -------------------------------------------------------------------------
- */
-// Daily cron job to send birthday mails
-$GLOBALS['TL_CRON']['daily'][] = [SendMail::class, 'sendBirthdayMail'];
+$GLOBALS['TL_CRON']['daily'][] = [SendMail::class, 'sendBirthdayMail']; */
