@@ -10,12 +10,12 @@ use Contao\CoreBundle\Framework\ContaoFramework;
 class SendMailCron
 {
     public function __construct(
-        private readonly SendMail $SendMail,
+        private readonly SendMail $sendMail,
     ) {
     }
 
     public function __invoke(): void
     {
-        $this->SendMail->sendBirthdayMail();
+        $this->sendMail->sendBirthdayMail();
     }
 }
