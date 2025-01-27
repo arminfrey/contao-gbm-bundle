@@ -2,7 +2,7 @@
 
 namespace Arminfrey\ContaoGbmBundle\Cron;
 
-use Arminfrey\ContaoGbmBundle\SendMail\SendMail;
+use Arminfrey\ContaoGbmBundle\SendMail;
 use Contao\CoreBundle\DependencyInjection\Attribute\AsCronJob;
 use Contao\CoreBundle\Framework\ContaoFramework;
 
