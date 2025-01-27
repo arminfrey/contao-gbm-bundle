@@ -9,10 +9,10 @@ use Contao\CoreBundle\Framework\ContaoFramework;
 #[AsCronJob('daily')]
 class SendMailCron
 {
-    /*public function __construct(
+    public function __construct(
         private readonly SendMail $SendMail,
     ) {
-    }*/
+    }
 
     public function __invoke(): void
     {
