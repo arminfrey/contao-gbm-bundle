@@ -95,7 +95,7 @@ class SendMail
 			. "FROM tl_member "
 			. "JOIN tl_member_group ON tl_member_group.id = CONVERT(substr(tl_member.groups,-4,1) using UTF8) "
 			. "JOIN tl_geburtstagsmail ON tl_geburtstagsmail.membergroup = tl_member_group.id "
-			. "WHERE tl_member.disable = 0 AND tl_member.dateOfBirth < 0"
+			. "WHERE tl_member.disable = 0 AND tl_member.dateOfBirth < 0 "
 			. "AND DATE_FORMAT(CURRENT_DATE(), '%d.%c') = DATE_FORMAT(DATE_ADD(FROM_UNIXTIME(0), interval tl_member.dateOfBirth second), '%d.%c') "
 			. "UNION "
 			. "SELECT distinct tl_member.*, "
@@ -106,7 +106,7 @@ class SendMail
 			. "FROM tl_member "
 			. "JOIN tl_member_group ON tl_member_group.id = CONVERT(substr(tl_member.groups,-4,1) using UTF8) "
 			. "JOIN tl_geburtstagsmail ON tl_geburtstagsmail.membergroup = tl_member_group.id "
-			. "WHERE tl_member.disable = 0 AND tl_member.dateOfBirth >= 0"
+			. "WHERE tl_member.disable = 0 AND tl_member.dateOfBirth >= 0 "
 			. "AND DATE_FORMAT(CURRENT_DATE(), '%d.%c') = DATE_FORMAT(FROM_UNIXTIME(tl_member.dateOfBirth), '%d.%c')");
 		foreach ($config as $conf) 
 		{
