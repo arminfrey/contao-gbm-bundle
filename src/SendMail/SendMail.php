@@ -97,7 +97,7 @@ class SendMail
 			. "JOIN tl_geburtstagsmail ON tl_geburtstagsmail.membergroup = tl_member_group.id "
 			. "WHERE tl_member.disable = 0 AND tl_member.dateOfBirth < 0 "
 			. "AND DATE_FORMAT(CURRENT_DATE(), '%d.%c') = DATE_FORMAT(DATE_ADD(FROM_UNIXTIME(0), interval tl_member.dateOfBirth+3800 second), '%d.%c') "
-			. "UNION DISTINCT"
+			. "UNION DISTINCT "
 			. "SELECT distinct tl_member.*, "
 			. "tl_member_group.name as memberGroupName, tl_member_group.disable as memberGroupDisable, tl_member_group.start as memberGroupStart, "
 			. "tl_member_group.stop as memberGroupStop, tl_geburtstagsmail.sender as mailSender, tl_geburtstagsmail.senderName as mailSenderName, "
