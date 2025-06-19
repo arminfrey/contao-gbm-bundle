@@ -6,7 +6,7 @@ use Arminfrey\ContaoGbmBundle\SendMail\SendMail;
 use Contao\CoreBundle\DependencyInjection\Attribute\AsCronJob;
 use Contao\CoreBundle\Framework\ContaoFramework;
 
-#[AsCronJob('daily')]
+#[AsCronJob('0 6 * * *')]
 class SendMailCron
 {
     public function __construct(
