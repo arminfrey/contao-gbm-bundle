@@ -18,3 +18,7 @@ services:
         - '@request_stack'
         - '@mailer'
         public: true
+        
+    Arminfrey\ContaoGbmBundle\Cron\SendMailCron:
+        arguments:
+            - '@Arminfrey\ContaoGbmBundle\SendMail\SendMail'
